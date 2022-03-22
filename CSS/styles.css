@@ -15,8 +15,10 @@
 width: 12rem;
 color:#39383B;
 text-align: center;
-font-size: 1rem;
+font-size: .65rem;
 margin:20px}
+
+
 
 body{background-color: #ffde59;
 color:#ffffff;
@@ -113,3 +115,75 @@ color:#ffffff;}
 
 .correo:hover{
 color:#ffffff;}
+
+.offcanvas-header{background-color: #39383b;
+color:#ffffff;}
+.offcanvas-body{background-color: #39383b;
+color:#ffffff;}
+
+.offchartpuertas{width:25rem;}
+
+
+ul{font-size: 8;}
+
+
+Button.btn{background-color: #39383b;
+border-color: #ffde59;
+color:#ffde59;
+}
+
+Button.btn:hover{background-color: #39383b;
+border-color: white;
+color:white;}
+
+collapseExampleTUBOS{padding:15 0;}
+
+
+div.card-body{
+    background-color: #39383b;
+    border-color:#39383b;
+    padding:1rem 0;
+}
+
+li.list-group-item{background-color: #39383b;
+color:lightgrey;
+text-align: left;
+padding-left: .4rem;
+padding-top: 0;
+padding-bottom: 0;
+font-size: 0.7rem;
+border-color: grey;
+border-style: dotted;
+font-weight: 300;}
+
+li.list-group-item:hover{background-color: #39383b;
+color: white;
+text-align: left;
+padding-left: .5rem;
+font-weight: 500;
+}
+
+P.kilos {font-size: 0.6rem;
+display: inline-block;
+color:orange;
+padding-top: 0;
+padding-bottom: 0;
+margin:0}
+
+P.kilos:hover{font-size: 0.7rem;}
+P.TEXTOMARCOSYCHAMBRANAS{font-size: .85rem;
+MARGIN:0;}
+
+button.btnXbtn-primary5{font-size: .85rem;
+  background-color: #39383b;
+  border-color: #ffde59;
+  color:#ffde59;
+border-width: thin;
+border-radius: 3%;}
+
+button.btnXbtn-primary5:hover{font-size: .85rem;
+  background-color: #39383b;
+  border-color: white;
+  color:white;
+border-width: thin;
+border-radius: 3%;}
