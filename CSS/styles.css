@@ -7,7 +7,7 @@
 
 
 
-.imagenproducto{width: 160px;
+.imagenproducto{width: 170px;
   padding-bottom: 25px;
 }
 
@@ -16,7 +16,7 @@ width: 12rem;
 color:#39383B;
 text-align: center;
 font-size: .65rem;
-margin:0;
+margin:20PX;
 padding: 0}
 
 
@@ -176,6 +176,8 @@ margin:0}
 P.kilos:hover{font-size: 0.7rem;}
 P.TEXTOMARCOSYCHAMBRANAS{font-size: .85rem;
 MARGIN:0;}
+
+P.ferre{width: 160px}
 
 button.btnXbtn-primary5{font-size: .85rem;
   background-color: #39383b;
