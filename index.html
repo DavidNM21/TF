@@ -3,158 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista Desplegable Dependiente para 3 Productos</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>Formulario de Pedidos</title>
     <style>
+        body {
+            background-color: #FFDE59;
+            color: #39383B;
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        .order-form {
+            background: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #39383B;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            text-align: left;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #39383B;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #39383B;
+        }
+
+        select {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url('data:image/svg+xml;utf8,<svg fill="%2339383B" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 20px;
+        }
+
+        option {
+            background-color: #39383B;
+            color: white;
+        }
+
         .product-quantity {
+            width: 75px;
             display: inline-block;
             margin-left: 10px;
-            width: 60px;
+        }
+
+        button {
+            background-color: #39383B;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+            margin-top: 15px;
+            margin-right: 10px;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        #subcategory1 {
+            width: calc(100% - 50px);
         }
     </style>
 </head>
 <body>
 
-<h2>Producto 1</h2>
-<select id="category1">
-    <option value="">Selecciona una categoría</option>
-    <option value="a">Categoría A</option>
-    <option value="b">Categoría B</option>
-    <option value="c">Categoría C</option>
-</select>
-
-<select id="subcategory1" disabled>
-    <option value="">Selecciona una subcategoría</option>
-</select>
-
-<div>
-    <select id="product1" disabled>
-        <option value="">Selecciona un producto</option>
+<div class="order-form">
+    <h2>Producto 1</h2>
+    <select id="category1">
+        <option value="">Selecciona una categoría</option>
+        <option value="a">Categoría A</option>
+        <option value="b">Categoría B</option>
+        <option value="c">Categoría C</option>
     </select>
-    <input type="number" id="quantity1" class="product-quantity" min="0" placeholder="Piezas" disabled>
+
+    <select id="subcategory1" disabled>
+        <option value="">Selecciona una subcategoría</option>
+    </select>
+
+    <div>
+        <select id="product1" disabled>
+            <option value="">Selecciona un producto</option>
+        </select>
+        <input type="number" id="quantity1" class="product-quantity" min="0" placeholder="Piezas" disabled>
+    </div>
+
+    <h2>Producto 2</h2>
+    <select id="category2">
+        <option value="">Selecciona una categoría</option>
+        <option value="a">Categoría A</option>
+        <option value="b">Categoría B</option>
+        <option value="c">Categoría C</option>
+    </select>
+
+    <select id="subcategory2" disabled>
+        <option value="">Selecciona una subcategoría</option>
+    </select>
+
+    <div>
+        <select id="product2" disabled>
+            <option value="">Selecciona un producto</option>
+        </select>
+        <input type="number" id="quantity2" class="product-quantity" min="0" placeholder="Piezas" disabled>
+    </div>
+
+    <h2>Producto 3</h2>
+    <select id="category3">
+        <option value="">Selecciona una categoría</option>
+        <option value="a">Categoría A</option>
+        <option value="b">Categoría B</option>
+        <option value="c">Categoría C</option>
+    </select>
+
+    <select id="subcategory3" disabled>
+        <option value="">Selecciona una subcategoría</option>
+    </select>
+
+    <div>
+        <select id="product3" disabled>
+            <option value="">Selecciona un producto</option>
+        </select>
+        <input type="number" id="quantity3" class="product-quantity" min="0" placeholder="Piezas" disabled>
+    </div>
+
+    <div class="actions">
+        <button id="copyAll" onclick="copyAllToClipboard()">Copiar Todo</button>
+        <button id="sendToWhatsApp" onclick="sendToWhatsApp()">Enviar a WhatsApp</button>
+    </div>
 </div>
 
-<h2>Producto 2</h2>
-<select id="category2">
-    <option value="">Selecciona una categoría</option>
-    <option value="a">Categoría A</option>
-    <option value="b">Categoría B</option>
-    <option value="c">Categoría C</option>
-</select>
-
-<select id="subcategory2" disabled>
-    <option value="">Selecciona una subcategoría</option>
-</select>
-
-<div>
-    <select id="product2" disabled>
-        <option value="">Selecciona un producto</option>
-    </select>
-    <input type="number" id="quantity2" class="product-quantity" min="0" placeholder="Piezas" disabled>
-</div>
-
-<h2>Producto 3</h2>
-<select id="category3">
-    <option value="">Selecciona una categoría</option>
-    <option value="a">Categoría A</option>
-    <option value="b">Categoría B</option>
-    <option value="c">Categoría C</option>
-</select>
-
-<select id="subcategory3" disabled>
-    <option value="">Selecciona una subcategoría</option>
-</select>
-
-<div>
-    <select id="product3" disabled>
-        <option value="">Selecciona un producto</option>
-    </select>
-    <input type="number" id="quantity3" class="product-quantity" min="0" placeholder="Piezas" disabled>
-</div>
-
-<button id="copyButton">Copiar</button>
 
 <script>
     // Objeto que representa las categorías, subcategorías y productos
     const data = {
         "a": {
-            "a1": ["Producto A1-1", "Producto A1-2", "Producto A1-3"],
-            "a2": ["Producto A2-1", "Producto A2-2", "Producto A2-3"],
-            "a3": ["Producto A3-1", "Producto A3-2", "Producto A3-3"]
+            "a1": [{name: "Producto A1-1", id: "IDNAME:C100C18"}, {name: "Producto A1-2", id: "IDNAME:C100C19"}, {name: "Producto A1-3", id: "IDNAME:C100C20"}],
+            "a2": [{name: "Producto A2-1", id: "IDNAME:C100C21"}, {name: "Producto A2-2", id: "IDNAME:C100C22"}, {name: "Producto A2-3", id: "IDNAME:C100C23"}],
+            "a3": [{name: "Producto A3-1", id: "IDNAME:C100C24"}, {name: "Producto A3-2", id: "IDNAME:C100C25"}, {name: "Producto A3-3", id: "IDNAME:C100C26"}]
         },
         "b": {
-            "b1": ["Producto B1-1", "Producto B1-2", "Producto B1-3"],
-            "b2": ["Producto B2-1", "Producto B2-2", "Producto B2-3"],
-            "b3": ["Producto B3-1", "Producto B3-2", "Producto B3-3"]
+            "b1": [{name: "Producto B1-1", id: "IDNAME:C100C27"}, {name: "Producto B1-2", id: "IDNAME:C100C28"}, {name: "Producto B1-3", id: "IDNAME:C100C29"}],
+            "b2": [{name: "Producto B2-1", id: "IDNAME:C100C30"}, {name: "Producto B2-2", id: "IDNAME:C100C31"}, {name: "Producto B2-3", id: "IDNAME:C100C32"}],
+            "b3": [{name: "Producto B3-1", id: "IDNAME:C100C33"}, {name: "Producto B3-2", id: "IDNAME:C100C34"}, {name: "Producto B3-3", id: "IDNAME:C100C35"}]
         },
         "c": {
-            "c1": ["Producto C1-1", "Producto C1-2", "Producto C1-3"],
-            "c2": ["Producto C2-1", "Producto C2-2", "Producto C2-3"],
-            "c3": ["Producto C3-1", "Producto C3-2", "Producto C3-3"]
+            "c1": [{name: "Producto C1-1", id: "IDNAME:C100C36"}, {name: "Producto C1-2", id: "IDNAME:C100C37"}, {name: "Producto C1-3", id: "IDNAME:C100C38"}],
+            "c2": [{name: "Producto C2-1", id: "IDNAME:C100C39"}, {name: "Producto C2-2", id: "IDNAME:C100C40"}, {name: "Producto C2-3", id: "IDNAME:C100C41"}],
+            "c3": [{name: "Producto C3-1", id: "IDNAME:C100C42"}, {name: "Producto C3-2", id: "IDNAME:C100C43"}, {name: "Producto C3-3", id: "IDNAME:C100C44"}]
         }
     };
 
-    // Funciones para los tres conjuntos de select
-    for (let i = 1; i <= 3; i++) {
-        $(`#category${i}`).change(function() {
-            const category = $(this).val();
-            $(`#subcategory${i}`).empty().append('<option value="">Selecciona una subcategoría</option>').prop('disabled', false);
-            if (category) {
-                Object.keys(data[category]).forEach(subcategory => {
-                    $(`#subcategory${i}`).append(`<option value="${subcategory}">${subcategory}</option>`);
-                });
-            } else {
-                $(`#subcategory${i}`).prop('disabled', true);
-                $(`#product${i}`).prop('disabled', true);
-                $(`#quantity${i}`).prop('disabled', true).val('');
-            }
-            $(`#product${i}`).empty().append('<option value="">Selecciona un producto</option>').prop('disabled', true);
-            $(`#quantity${i}`).prop('disabled', true).val('');
-        });
+    // Función para manejar el cambio de categoría
+    function handleCategoryChange(productIndex) {
+        const categorySelect = document.getElementById(`category${productIndex}`);
+        const subcategorySelect = document.getElementById(`subcategory${productIndex}`);
+        const selectedCategory = categorySelect.value;
+        subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
+        subcategorySelect.disabled = selectedCategory === "";
 
-        $(`#subcategory${i}`).change(function() {
-            const category = $(`#category${i}`).val();
-            const subcategory = $(this).val();
-            $(`#product${i}`).empty().append('<option value="">Selecciona un producto</option>').prop('disabled', false);
-            if (subcategory) {
-                data[category][subcategory].forEach(product => {
-                    $(`#product${i}`).append(`<option value="${product}">${product}</option>`);
-                });
-            } else {
-                $(`#product${i}`).prop('disabled', true);
-                $(`#quantity${i}`).prop('disabled', true).val('');
-            }
-            $(`#quantity${i}`).prop('disabled', true).val('');
-        });
-
-        $(`#product${i}`).change(function() {
-            $(`#quantity${i}`).prop('disabled', false).val('');
-        });
+        if (selectedCategory) {
+            Object.keys(data[selectedCategory]).forEach(subcategory => {
+                const option = document.createElement('option');
+                option.value = subcategory;
+                option.textContent = subcategory.toUpperCase();
+                subcategorySelect.appendChild(option);
+            });
+            subcategorySelect.disabled = false;
+        }
     }
 
-    // Función para copiar productos con cantidad mayor a 0
-    document.getElementById('copyButton').addEventListener('click', function() {
-        let selectedProducts = [];
+    // Función para manejar el cambio de subcategoría
+    function handleSubcategoryChange(productIndex) {
+        const selectedCategory = document.getElementById(`category${productIndex}`).value;
+        const selectedSubcategory = document.getElementById(`subcategory${productIndex}`).value;
+        const productSelect = document.getElementById(`product${productIndex}`);
+        const quantityInput = document.getElementById(`quantity${productIndex}`);
+        productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
+        productSelect.disabled = selectedSubcategory === "";
+        quantityInput.disabled = true;
+        quantityInput.value = '';
+
+        if (selectedSubcategory) {
+            data[selectedCategory][selectedSubcategory].forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id; // Aquí usamos el ID oculto
+                option.textContent = product.name; // Mostramos el nombre
+                productSelect.appendChild(option);
+            });
+            productSelect.disabled = false;
+        }
+    }
+
+    // Función para manejar el cambio de producto
+    function handleProductChange(productIndex) {
+        const quantityInput = document.getElementById(`quantity${productIndex}`);
+        quantityInput.disabled = false;
+    }
+
+    // Función para copiar todos los productos seleccionados al portapapeles
+    function copyAllToClipboard() {
+        let fullText = "";
         for (let i = 1; i <= 3; i++) {
-            const product = $(`#product${i}`).val();
-            const quantity = parseInt($(`#quantity${i}`).val(), 10);
-            if (product && !isNaN(quantity) && quantity > 0) {
-                selectedProducts.push(`${product}: ${quantity} piezas`);
+            const productSelect = document.getElementById(`product${i}`);
+            const quantityInput = document.getElementById(`quantity${i}`);
+            if (productSelect.value && quantityInput.value > 0) {
+                const selectedOption = productSelect.selectedOptions[0];
+                fullText += `${selectedOption.value} ${selectedOption.text}: ${quantityInput.value} piezas\n`;
             }
         }
-
-        if (selectedProducts.length > 0) {
-            const textToCopy = selectedProducts.join('\n');
-            navigator.clipboard.writeText(textToCopy).then(() => {
-                alert('Productos copiados al portapapeles!');
-            }, (err) => {
-                console.error('No se pudo copiar al portapapeles: ', err);
-                alert('Hubo un error al intentar copiar al portapapeles.');
+        if (fullText) {
+            navigator.clipboard.writeText(fullText).then(() => {
+                console.log('Texto copiado al portapapeles: ', fullText);
+            }).catch(err => {
+                console.error('Error al copiar al portapapeles: ', err);
             });
         } else {
-            alert('No hay productos seleccionados con cantidad mayor a 0.');
+            alert('Selecciona al menos un producto y especifica la cantidad para copiar.');
         }
-    });
+    }
+
+    // Función para enviar productos seleccionados a WhatsApp
+    function sendToWhatsApp() {
+        let message = "";
+        for (let i = 1; i <= 3; i++) {
+            const productSelect = document.getElementById(`product${i}`);
+            const quantityInput = document.getElementById(`quantity${i}`);
+            if (productSelect.value && quantityInput.value > 0) {
+                const selectedOption = productSelect.selectedOptions[0];
+                message += `${selectedOption.value} ${selectedOption.text}: ${quantityInput.value} piezas\n`;
+            }
+        }
+        if (message) {
+            const encodedMessage = encodeURIComponent(message);
+            const url = `https://api.whatsapp.com/send?phone=528115001658&text=${encodedMessage}`;
+            window.open(url, '_blank');
+        } else {
+            alert('Debes seleccionar al menos un producto y especificar la cantidad para enviar.');
+        }
+    }
+
+    // Añadir eventos para los tres conjuntos de selects
+    for (let i = 1; i <= 3; i++) {
+        document.getElementById(`category${i}`).addEventListener('change', () => handleCategoryChange(i));
+        document.getElementById(`subcategory${i}`).addEventListener('change', () => handleSubcategoryChange(i));
+        document.getElementById(`product${i}`).addEventListener('change', () => handleProductChange(i));
+    }
 </script>
 
 </body>
