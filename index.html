@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Formulario de pedidos rápido y fácil de usar para gestionar productos y cantidades.">
     <title>Formulario de Pedidos</title>
     <style>
         body {
@@ -28,14 +30,30 @@
             text-align: center;
         }
 
+        .form-header {
+            margin-bottom: 20px;
+        }
+
         h2 {
             color: #39383B;
             margin-bottom: 10px;
             margin-top: 10px;
             text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
-        select, input[type="number"] {
+        label {
+            display: block;
+            text-align: left;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        select,
+        input[type="number"],
+        input[type="text"] {
             width: 100%;
             padding: 10px;
             margin: 5px 0;
@@ -55,9 +73,11 @@
             background-size: 20px;
         }
 
-        option {
-            background-color: #39383B;
-            color: white;
+        input:focus,
+        select:focus {
+            border-color: #FFB700;
+            outline: none;
+            box-shadow: 0 0 5px rgba(255, 183, 0, 0.7);
         }
 
         .product-quantity {
@@ -73,13 +93,22 @@
             border-radius: 4px;
             padding: 10px 20px;
             cursor: pointer;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease, transform 0.2s ease;
             margin-top: 15px;
             margin-right: 10px;
         }
 
         button:hover {
             opacity: 0.8;
+            transform: scale(1.03);
+        }
+
+        #resetButton {
+            background-color: #F60000;
+        }
+
+        #sendToWhatsApp {
+            background-color: #25CC64;
         }
 
         .actions {
@@ -88,194 +117,300 @@
             margin-top: 20px;
         }
 
-        #subcategory1 {
-            width: calc(100% - 50px);
+        .switch-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 20px;
+            background-color: #ccc;
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-switch::before {
+            content: "";
+            width: 18px;
+            height: 18px;
+            background-color: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 1px;
+            left: 1px;
+            transition: left 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background-color: #25CC64;
+        }
+
+        .toggle-switch.active::before {
+            left: 21px;
+        }
+
+        .search-container {
+            display: none;
+        }
+
+        .search-container.active {
+            display: block;
+        }
+
+        .dropdown-container.active {
+            display: block;
+        }
+
+        .dropdown-container {
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #39383B;
+            border-radius: 4px;
+            resize: vertical;
+            min-height: 50px;
         }
     </style>
 </head>
+
 <body>
+    <div class="order-form">
+        <div class="form-header">
+            <h3>Datos del Pedido</h3>
+            <div class="form-group">
+                <label for="horario">Horario para recibir pedido (obligatorio):</label>
+                <select id="horario" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="1er-hora">1er hora (9:00 am a 11:00 am)</option>
+                    <option value="am">AM (11:30 am a 3:00pm)</option>
+                    <option value="pm">PM (4:30pm a 6:30pm)</option>
+                    <option value="programado">Programado (otro día)</option>
+                </select>
+            </div>
 
-<div class="order-form">
-    <h2>Producto 1</h2>
-    <select id="category1">
-        <option value="">Selecciona una categoría</option>
-        <option value="a">Categoría A</option>
-        <option value="b">Categoría B</option>
-        <option value="c">Categoría C</option>
-    </select>
+            <div class="form-group">
+                <label for="forma-pago">Forma de pago (obligatorio):</label>
+                <select id="forma-pago" required>
+                    <option value="">Seleccione una opción</option>
+                    <option value="efectivo">Efectivo</option>
+                    <option value="transferencia">Transferencia</option>
+                    <option value="tarjeta">Tarjeta</option>
+                </select>
+            </div>
 
-    <select id="subcategory1" disabled>
-        <option value="">Selecciona una subcategoría</option>
-    </select>
+            <div class="form-group">
+                <label for="nombre-cliente">Cliente (Nombre y Apellido o Nombre de Empresa):</label>
+                <input type="text" id="nombre-cliente" placeholder="Nombre del Cliente" required>
+            </div>
 
-    <div>
-        <select id="product1" disabled>
-            <option value="">Selecciona un producto</option>
-        </select>
-        <input type="number" id="quantity1" class="product-quantity" min="0" placeholder="Piezas" disabled>
+            <div class="form-group">
+                <label for="calle">Calle:</label>
+                <input type="text" id="calle" placeholder="Calle" required>
+            </div>
+
+            <div class="form-group">
+                <label for="numero">Número de casa o taller:</label>
+                <input type="text" id="numero" placeholder="Número" required>
+            </div>
+
+            <div class="form-group">
+                <label for="colonia">Colonia:</label>
+                <input type="text" id="colonia" placeholder="Colonia" required>
+            </div>
+
+            <div class="form-group">
+                <label for="ciudad">Ciudad:</label>
+                <input type="text" id="ciudad" placeholder="Ciudad" required>
+            </div>
+
+            <div class="form-group">
+                <label for="referencias">Referencias o comentarios (opcional):</label>
+                <textarea id="referencias" placeholder="Escriba alguna referencia o comentario"></textarea>
+            </div>
+        </div>
+
+        <div id="productCount">Productos seleccionados: 0</div>
+        <div id="productContainer">
+            <!-- Aquí se generarán las filas de productos -->
+        </div>
+        <div class="actions">
+            <button id="addProduct" onclick="addProductRow()">Agregar Producto (+)</button>
+            <button id="copyAll" onclick="copyAllToClipboard()">Copiar Todo</button>
+            <button id="sendToWhatsApp" onclick="sendToWhatsApp()">Enviar a WhatsApp</button>
+            <button id="resetButton">Borrar todo</button>
+        </div>
     </div>
 
-    <h2>Producto 2</h2>
-    <select id="category2">
-        <option value="">Selecciona una categoría</option>
-        <option value="a">Categoría A</option>
-        <option value="b">Categoría B</option>
-        <option value="c">Categoría C</option>
-    </select>
+    <script>
+        const data = {
+            "a": {
+                "a1": [{ name: "Producto A1-1", id: "IDNAME:C100C18" }, { name: "Producto A1-2", id: "IDNAME:C100C19" }],
+                "a2": [{ name: "Producto A2-1", id: "IDNAME:C100C21" }, { name: "Producto A2-2", id: "IDNAME:C100C22" }]
+            },
+            "b": {
+                "b1": [{ name: "Producto B1-1", id: "IDNAME:C100C27" }, { name: "Producto B1-2", id: "IDNAME:C100C28" }],
+                "b2": [{ name: "Producto B2-1", id: "IDNAME:C100C30" }, { name: "Producto B2-2", id: "IDNAME:C100C31" }]
+            }
+        };
 
-    <select id="subcategory2" disabled>
-        <option value="">Selecciona una subcategoría</option>
-    </select>
+        let productCounter = 0;
+        const maxProducts = 30;
 
-    <div>
-        <select id="product2" disabled>
-            <option value="">Selecciona un producto</option>
-        </select>
-        <input type="number" id="quantity2" class="product-quantity" min="0" placeholder="Piezas" disabled>
-    </div>
-
-    <h2>Producto 3</h2>
-    <select id="category3">
-        <option value="">Selecciona una categoría</option>
-        <option value="a">Categoría A</option>
-        <option value="b">Categoría B</option>
-        <option value="c">Categoría C</option>
-    </select>
-
-    <select id="subcategory3" disabled>
-        <option value="">Selecciona una subcategoría</option>
-    </select>
-
-    <div>
-        <select id="product3" disabled>
-            <option value="">Selecciona un producto</option>
-        </select>
-        <input type="number" id="quantity3" class="product-quantity" min="0" placeholder="Piezas" disabled>
-    </div>
-
-    <div class="actions">
-        <button id="copyAll" onclick="copyAllToClipboard()">Copiar Todo</button>
-        <button id="sendToWhatsApp" onclick="sendToWhatsApp()">Enviar a WhatsApp</button>
-    </div>
-</div>
-
-
-<script>
-    // Objeto que representa las categorías, subcategorías y productos
-    const data = {
-        "a": {
-            "a1": [{name: "Producto A1-1", id: "IDNAME:C100C18"}, {name: "Producto A1-2", id: "IDNAME:C100C19"}, {name: "Producto A1-3", id: "IDNAME:C100C20"}],
-            "a2": [{name: "Producto A2-1", id: "IDNAME:C100C21"}, {name: "Producto A2-2", id: "IDNAME:C100C22"}, {name: "Producto A2-3", id: "IDNAME:C100C23"}],
-            "a3": [{name: "Producto A3-1", id: "IDNAME:C100C24"}, {name: "Producto A3-2", id: "IDNAME:C100C25"}, {name: "Producto A3-3", id: "IDNAME:C100C26"}]
-        },
-        "b": {
-            "b1": [{name: "Producto B1-1", id: "IDNAME:C100C27"}, {name: "Producto B1-2", id: "IDNAME:C100C28"}, {name: "Producto B1-3", id: "IDNAME:C100C29"}],
-            "b2": [{name: "Producto B2-1", id: "IDNAME:C100C30"}, {name: "Producto B2-2", id: "IDNAME:C100C31"}, {name: "Producto B2-3", id: "IDNAME:C100C32"}],
-            "b3": [{name: "Producto B3-1", id: "IDNAME:C100C33"}, {name: "Producto B3-2", id: "IDNAME:C100C34"}, {name: "Producto B3-3", id: "IDNAME:C100C35"}]
-        },
-        "c": {
-            "c1": [{name: "Producto C1-1", id: "IDNAME:C100C36"}, {name: "Producto C1-2", id: "IDNAME:C100C37"}, {name: "Producto C1-3", id: "IDNAME:C100C38"}],
-            "c2": [{name: "Producto C2-1", id: "IDNAME:C100C39"}, {name: "Producto C2-2", id: "IDNAME:C100C40"}, {name: "Producto C2-3", id: "IDNAME:C100C41"}],
-            "c3": [{name: "Producto C3-1", id: "IDNAME:C100C42"}, {name: "Producto C3-2", id: "IDNAME:C100C43"}, {name: "Producto C3-3", id: "IDNAME:C100C44"}]
+        function updateProductCount() {
+            document.getElementById('productCount').textContent = `Productos seleccionados: ${productCounter}`;
         }
-    };
 
-    // Función para manejar el cambio de categoría
-    function handleCategoryChange(productIndex) {
-        const categorySelect = document.getElementById(`category${productIndex}`);
-        const subcategorySelect = document.getElementById(`subcategory${productIndex}`);
-        const selectedCategory = categorySelect.value;
-        subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
-        subcategorySelect.disabled = selectedCategory === "";
+        function createProductRow(index) {
+            const productRow = document.createElement('div');
+            productRow.className = 'product-row';
+            productRow.innerHTML = `
+                <h2>Producto ${index + 1}
+                    <div class="switch-container">
+                        <span>Búsqueda directa</span>
+                        <div class="toggle-switch" onclick="toggleSearchMode(${index})"></div>
+                    </div>
+                </h2>
+                <div class="dropdown-container active">
+                    <label for="category${index}">Categoría:</label>
+                    <select id="category${index}" onchange="handleCategoryChange(${index})">
+                        <option value="">Selecciona una categoría</option>
+                        <option value="a">Categoría A</option>
+                        <option value="b">Categoría B</option>
+                    </select>
 
-        if (selectedCategory) {
-            Object.keys(data[selectedCategory]).forEach(subcategory => {
-                const option = document.createElement('option');
-                option.value = subcategory;
-                option.textContent = subcategory.toUpperCase();
-                subcategorySelect.appendChild(option);
-            });
-            subcategorySelect.disabled = false;
+                    <label for="subcategory${index}">Subcategoría:</label>
+                    <select id="subcategory${index}" disabled onchange="handleSubcategoryChange(${index})">
+                        <option value="">Selecciona una subcategoría</option>
+                    </select>
+
+                    <label for="product${index}">Producto:</label>
+                    <select id="product${index}" disabled onchange="handleProductChange(${index})">
+                        <option value="">Selecciona un producto</option>
+                    </select>
+                </div>
+                <div class="search-container">
+                    <label for="search${index}">Buscar Producto o ID:</label>
+                    <input type="text" id="search${index}" placeholder="Escribe el nombre o ID" oninput="searchProduct(${index})">
+                    <div id="searchResults${index}"></div>
+                </div>
+                <input type="number" id="quantity${index}" class="product-quantity" min="1" placeholder="Piezas" disabled>
+            `;
+            return productRow;
         }
-    }
 
-    // Función para manejar el cambio de subcategoría
-    function handleSubcategoryChange(productIndex) {
-        const selectedCategory = document.getElementById(`category${productIndex}`).value;
-        const selectedSubcategory = document.getElementById(`subcategory${productIndex}`).value;
-        const productSelect = document.getElementById(`product${productIndex}`);
-        const quantityInput = document.getElementById(`quantity${productIndex}`);
-        productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
-        productSelect.disabled = selectedSubcategory === "";
-        quantityInput.disabled = true;
-        quantityInput.value = '';
-
-        if (selectedSubcategory) {
-            data[selectedCategory][selectedSubcategory].forEach(product => {
-                const option = document.createElement('option');
-                option.value = product.id; // Aquí usamos el ID oculto
-                option.textContent = product.name; // Mostramos el nombre
-                productSelect.appendChild(option);
-            });
-            productSelect.disabled = false;
-        }
-    }
-
-    // Función para manejar el cambio de producto
-    function handleProductChange(productIndex) {
-        const quantityInput = document.getElementById(`quantity${productIndex}`);
-        quantityInput.disabled = false;
-    }
-
-    // Función para copiar todos los productos seleccionados al portapapeles
-    function copyAllToClipboard() {
-        let fullText = "";
-        for (let i = 1; i <= 3; i++) {
-            const productSelect = document.getElementById(`product${i}`);
-            const quantityInput = document.getElementById(`quantity${i}`);
-            if (productSelect.value && quantityInput.value > 0) {
-                const selectedOption = productSelect.selectedOptions[0];
-                fullText += `${selectedOption.value} ${selectedOption.text}: ${quantityInput.value} piezas\n`;
+        function addProductRow() {
+            if (productCounter < maxProducts) {
+                const productContainer = document.getElementById('productContainer');
+                productContainer.appendChild(createProductRow(productCounter));
+                productCounter++;
+                updateProductCount();
+            } else {
+                alert('Has alcanzado el máximo de 30 productos.');
             }
         }
-        if (fullText) {
-            navigator.clipboard.writeText(fullText).then(() => {
-                console.log('Texto copiado al portapapeles: ', fullText);
-            }).catch(err => {
-                console.error('Error al copiar al portapapeles: ', err);
-            });
-        } else {
-            alert('Selecciona al menos un producto y especifica la cantidad para copiar.');
-        }
-    }
 
-    // Función para enviar productos seleccionados a WhatsApp
-    function sendToWhatsApp() {
-        let message = "";
-        for (let i = 1; i <= 3; i++) {
-            const productSelect = document.getElementById(`product${i}`);
-            const quantityInput = document.getElementById(`quantity${i}`);
-            if (productSelect.value && quantityInput.value > 0) {
-                const selectedOption = productSelect.selectedOptions[0];
-                message += `${selectedOption.value} ${selectedOption.text}: ${quantityInput.value} piezas\n`;
+        function toggleSearchMode(index) {
+            const toggleSwitch = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .toggle-switch`);
+            const dropdownContainer = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .dropdown-container`);
+            const searchContainer = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .search-container`);
+
+            toggleSwitch.classList.toggle('active');
+            const isActive = toggleSwitch.classList.contains('active');
+
+            if (isActive) {
+                dropdownContainer.classList.remove('active');
+                searchContainer.classList.add('active');
+            } else {
+                dropdownContainer.classList.add('active');
+                searchContainer.classList.remove('active');
             }
         }
-        if (message) {
-            const encodedMessage = encodeURIComponent(message);
-            const url = `https://api.whatsapp.com/send?phone=528115001658&text=${encodedMessage}`;
-            window.open(url, '_blank');
-        } else {
-            alert('Debes seleccionar al menos un producto y especificar la cantidad para enviar.');
+
+        function handleCategoryChange(index) {
+            const categorySelect = document.getElementById(`category${index}`);
+            const subcategorySelect = document.getElementById(`subcategory${index}`);
+            const productSelect = document.getElementById(`product${index}`);
+            const selectedCategory = categorySelect.value;
+            subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
+            productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
+            subcategorySelect.disabled = true;
+            productSelect.disabled = true;
+            document.getElementById(`quantity${index}`).disabled = true;
+
+            if (selectedCategory) {
+                Object.keys(data[selectedCategory]).forEach(subcategory => {
+                    const option = document.createElement('option');
+                    option.value = subcategory;
+                    option.textContent = subcategory.toUpperCase();
+                    subcategorySelect.appendChild(option);
+                });
+                subcategorySelect.disabled = false;
+            }
         }
-    }
 
-    // Añadir eventos para los tres conjuntos de selects
-    for (let i = 1; i <= 3; i++) {
-        document.getElementById(`category${i}`).addEventListener('change', () => handleCategoryChange(i));
-        document.getElementById(`subcategory${i}`).addEventListener('change', () => handleSubcategoryChange(i));
-        document.getElementById(`product${i}`).addEventListener('change', () => handleProductChange(i));
-    }
-</script>
+        function handleSubcategoryChange(index) {
+            const selectedCategory = document.getElementById(`category${index}`).value;
+            const selectedSubcategory = document.getElementById(`subcategory${index}`).value;
+            const productSelect = document.getElementById(`product${index}`);
+            const quantityInput = document.getElementById(`quantity${index}`);
+            productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
+            productSelect.disabled = true;
+            quantityInput.disabled = true;
 
+            if (selectedSubcategory) {
+                data[selectedCategory][selectedSubcategory].forEach(product => {
+                    const option = document.createElement('option');
+                    option.value = product.id;
+                    option.textContent = product.name;
+                    productSelect.appendChild(option);
+                });
+                productSelect.disabled = false;
+            }
+        }
+
+        function handleProductChange(index) {
+            document.getElementById(`quantity${index}`).disabled = false;
+        }
+
+        function searchProduct(index) {
+            const query = document.getElementById(`search${index}`).value.toLowerCase();
+            const searchResults = document.getElementById(`searchResults${index}`);
+            searchResults.innerHTML = "";
+
+            if (query.length > 2) {
+                Object.values(data).forEach(subcategories => {
+                    Object.values(subcategories).forEach(products => {
+                        products.forEach(product => {
+                            if (product.name.toLowerCase().includes(query) || product.id.toLowerCase().includes(query)) {
+                                const resultItem = document.createElement('div');
+                                resultItem.textContent = `${product.id} - ${product.name}`;
+                                resultItem.classList.add('search-result-item');
+                                resultItem.onclick = () => {
+                                    document.getElementById(`quantity${index}`).disabled = false;
+                                    document.getElementById(`search${index}`).value = `${product.id} - ${product.name}`;
+                                    searchResults.innerHTML = "";
+                                };
+                                searchResults.appendChild(resultItem);
+                            }
+                        });
+                    });
+                });
+            }
+        }
+
+        addProductRow();
+    </script>
 </body>
+
 </html>
