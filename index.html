@@ -8,189 +8,218 @@
     <title>Formulario de Pedidos</title>
     <style>
 
-        .dropdown-group {
+        .quantity-container {
             display: flex;
-            align-items: center;
-            gap: 10px; /* Espacio entre los elementos */
+            align-items: center; /* Centra verticalmente */
+            justify-content: center; /* Opcional: centra horizontalmente */
+            gap: 10px; /* Espacio entre el texto y el selector */
+            margin-top: 10px;
         }
 
-        .dropdown-group label,
-        .dropdown-group select {
-            font-size: 16px; /* Tamaño de texto de los elementos */
+        .quantity-container label {
+            font-size: 16px; /* Tamaño del texto */
         }
 
-        .dropdown-group select {
-            width: 230px; /* Ancho personalizado */
+        .quantity-container select {
             padding: 5px;
+            font-size: 16px;
+            width: 100px; /* Ajusta el ancho del select */
         }
 
-        @media (max-width: 768px) {
+        hr {
+        border: none;
+        border-top: 10px solid #FFDE59;
+        margin: 10px 0;
+    }
+
+        .product-row {
+               border-bottom: 0px solid #ddd; /* Línea gris debajo */
+               padding-bottom: 0px;
+               margin-bottom: 20px;
+           }
             .dropdown-group {
-                flex-wrap: wrap; /* Para dispositivos móviles, las opciones se apilan si no caben en una línea */
+                display: flex;
+                align-items: center;
+                gap: 10px; /* Espacio entre los elementos */
             }
+
+            .dropdown-group label,
             .dropdown-group select {
-                width: 100%; /* Ancho completo en dispositivos pequeños */
+                font-size: 16px; /* Tamaño de texto de los elementos */
             }
-        }
+
+            .dropdown-group select {
+                width: 230px; /* Ancho personalizado */
+                padding: 5px;
+            }
+
+            @media (max-width: 768px) {
+                .dropdown-group {
+                    flex-wrap: wrap; /* Para dispositivos móviles, las opciones se apilan si no caben en una línea */
+                }
+                .dropdown-group select {
+                    width: 100%; /* Ancho completo en dispositivos pequeños */
+                }
+            }
 
 
 
 
 
-        body {
-            background-color: #FFDE59;
-            color: #39383B;
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            margin: 0;
-            padding: 0 20px;
-        }
+            body {
+                background-color: #FFDE59;
+                color: #39383B;
+                font-family: 'Arial', sans-serif;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                min-height: 100vh;
+                margin: 0;
+                padding: 0 20px;
+            }
 
-        .order-form {
-            background: #fff;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
-        }
+            .order-form {
+                background: #fff;
+                border-radius: 10px;
+                padding: 20px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                width: 100%;
+                max-width: 500px;
+                text-align: center;
+            }
 
-        h2 {
-            color: #25CC64;
-            margin-bottom: 10px;
-            margin-top: 10px;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-      span {
-            color: #39383B;
-            margin-bottom: 10px;
-            margin-top: 10px;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
+            h2 {
+                color: #25CC64;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
+          span {
+                color: #39383B;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                text-align: left;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+            }
 
-        label {
-            display: block;
-            text-align: left;
-            font-weight: bold;
-            margin-top: 10px;
-        }
+            label {
+                display: block;
+                text-align: left;
+                font-weight: bold;
+                margin-top: 10px;
+            }
 
-        select,
-        input[type="number"],
-        input[type="text"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #39383B;
-            border-radius: 4px;
-            background-color: #fff;
-            color: #39383B;
-        }
+            select,
+            input[type="number"],
+            input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin: 5px 0;
+                border: 1px solid #39383B;
+                border-radius: 4px;
+                background-color: #fff;
+                color: #39383B;
+            }
 
-        .product-quantity {
-            width: 75px;
-            display: inline-block;
-            margin-left: 10px;
-        }
+            .product-quantity {
+                width: 150px;
+                display: inline-block;
+                margin-left: 10px;
+            }
 
-        .search-result-item {
-            cursor: pointer;
-            padding: 5px;
-            border-bottom: 1px solid #ddd;
-        }
+            .search-result-item {
+                cursor: pointer;
+                padding: 5px;
+                border-bottom: 1px solid #ddd;
+            }
 
-        .search-result-item:hover {
-            background-color: #f0f0f0;
-        }
+            .search-result-item:hover {
+                background-color: #f0f0f0;
+            }
 
-        button {
-            background-color: #39383B;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 10px 20px;
-            cursor: pointer;
-            transition: opacity 0.3s ease, transform 0.2s ease;
-            margin-top: 15px;
-            margin-right: 10px;
-        }
+            button {
+                background-color: #39383B;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                padding: 10px 20px;
+                cursor: pointer;
+                transition: opacity 0.3s ease, transform 0.2s ease;
+                margin-top: 15px;
+                margin-right: 10px;
+            }
 
-        .switch-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+            .switch-container {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
 
-        .toggle-switch {
-            width: 40px;
-            height: 20px;
-            background-color: #ccc;
-            border-radius: 20px;
-            position: relative;
-            cursor: pointer;
-        }
+            .toggle-switch {
+                width: 40px;
+                height: 20px;
+                background-color: #ccc;
+                border-radius: 20px;
+                position: relative;
+                cursor: pointer;
+            }
 
-        .toggle-switch::before {
-            content: "";
-            width: 18px;
-            height: 18px;
-            background-color: white;
-            border-radius: 50%;
-            position: absolute;
-            top: 1px;
-            left: 1px;
-            transition: left 0.3s ease;
-        }
+            .toggle-switch::before {
+                content: "";
+                width: 18px;
+                height: 18px;
+                background-color: white;
+                border-radius: 50%;
+                position: absolute;
+                top: 1px;
+                left: 1px;
+                transition: left 0.3s ease;
+            }
 
-        .toggle-switch.active {
-            background-color: #25CC64;
-        }
+            .toggle-switch.active {
+                background-color: #25CC64;
+            }
 
-        .toggle-switch.active::before {
-            left: 21px;
-        }
+            .toggle-switch.active::before {
+                left: 21px;
+            }
 
-        .search-container {
-            display: none;
-        }
+            .search-container {
+                display: none;
+            }
 
-        .search-container.active {
-            display: block;
-        }
+            .search-container.active {
+                display: block;
+            }
 
-        .dropdown-container.active {
-            display: block;
-        }
+            .dropdown-container.active {
+                display: block;
+            }
 
-        .dropdown-container {
-            display: none;
-        }
+            .dropdown-container {
+                display: none;
+            }
 
-        #resetButton {
-            background-color: #F60000;
-        }
+            #resetButton {
+                background-color: #F60000;
+            }
 
-        #sendToWhatsApp {
-            background-color: #25CC64;
-        }
+            #sendToWhatsApp {
+                background-color: #25CC64;
+            }
 
-        .actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-    </style>
+          #addProduct{background-color: #0000FF;}
+            .actions {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 20px;
+            }    </style>
 </head>
 
 <body>
@@ -199,6 +228,7 @@
         <div id="productContainer">
             <!-- Aquí se generarán las filas de productos -->
         </div>
+        <div id="totalGeneral">Total General: $0.00</div>
         <div class="actions">
             <button id="addProduct">Agregar Producto (+)</button>
             <button id="copyAll">Copiar Todo</button>
@@ -208,125 +238,859 @@
     </div>
 
     <script>
+        const prices = {
+          "LOUVER3": 187.92,
+          "PVC20": 35.09,
+          "AMC20": 127.31,
+          "ALC20": 167.04,
+          "ARC20": 219.53,
+          "ALC18": 227.07,
+          "RVC18": 132.82,
+          "RSC18": 225.91,
+          "RRC16": 440.8,
+          "RRC14": 520.84,
+          "DCC20": 166.46,
+          "DAC20": 282.46,
+          "MEC20": 171.39,
+          "MSC20": 193.43,
+          "MSC20G": 257.52,
+          "MDC20": 264.19,
+          "TAB33": 175.45,
+          "TAB36": 370.33,
+          "TAB38": 489.52,
+          "CAC20": 180.38,
+          "CTC20": 225.91,
+          "CTC18": 345.97,
+          "PMC20": 190.82,
+          "TSC20": 190.82,
+          "TDC20": 275.79,
+          "ZC20": 191.4,
+          "P100C20": 197.2,
+          "P150C20": 229.1,
+          "P200C20": 248.53,
+          "P250C20": 287.68,
+          "P150C18": 321.9,
+          "P300C20": 321.9,
+          "P200C18": 370.04,
+          "P400C20": 377,
+          "P300C18": 416.44,
+          "P250C18": 419.34,
+          "P400C18": 484.3,
+          "EC20": 209.67,
+          "M300C20": 359.02,
+          "C75C14": 155.15,
+          "C100C14": 198.36,
+          "C125C14": 251.43,
+          "C150C14": 310.88,
+          "C200C14": 406,
+          "C250C14": 528.96,
+          "C300C14": 620.02,
+          "C400C14": 811.71,
+          "C50C20": 69.6,
+          "C75C20": 92.22,
+          "C100C20": 124.41,
+          "C125C20": 159.5,
+          "C150C20": 189.95,
+          "C50C18": 90.48,
+          "C75C18": 121.8,
+          "C100C18": 164.72,
+          "C125C18": 211.41,
+          "C150C18": 255.49,
+          "C200C18": 339.3,
+          "C75C16": 144.13,
+          "C100C16": 174,
+          "C125C16": 235.77,
+          "C150C16": 267.96,
+          "C150C11": 493,
+          "C200C11": 693.1,
+          "C300C11": 1099.97,
+          "C400C11": 1399.83,
+          "C200C12": 642.93,
+          "C300C9": 1228.44,
+          "C200C7": 983.97,
+          "C400C7": 100000,
+          "R200C14": 307.69,
+          "R249C14": 403.68,
+          "R250C14": 431.23,
+          "R300C14": 460.52,
+          "R302C14": 551.29,
+          "R400C14": 555.06,
+          "R402C14": 620.02,
+          "R602C14": 830.27,
+          "R100C20": 92.8,
+          "R125C20": 124.41,
+          "R155C20": 124.7,
+          "R175C20": 162.11,
+          "R200C20": 189.95,
+          "R225C20": 190.82,
+          "R249C20": 243.89,
+          "R250C20": 255.49,
+          "R300C20": 282.46,
+          "R400C20": 353.22,
+          "R100C18": 120.35,
+          "R125C18": 164.72,
+          "R155C18": 164.72,
+          "R151C18": 213.44,
+          "R175C18": 213.44,
+          "R200C18": 252.59,
+          "R225C18": 252.59,
+          "R249C18": 321.32,
+          "R250C18": 338.43,
+          "R300C18": 378.16,
+          "R400C18": 466.32,
+          "R200C16": 289.42,
+          "R302C11": 842.74,
+          "R402C11": 1091.85,
+          "R403C11": 1148.98,
+          "R300C11": 1364.16,
+          "R602C11": 1600.22,
+          "R604C11": 100000,
+          "R249C12": 672.8,
+          "R402C7": 1540.77,
+          "R604C3/16": 2828.95,
+          "R402C3/16": 100000,
+          "T75C20": 78.88,
+          "T100C20": 106.72,
+          "T125C20": 129.34,
+          "T150C20": 159.79,
+          "T200C20": 230.55,
+          "T50C18": 73.95,
+          "T63C18": 96.57,
+          "T75C18": 104.98,
+          "TUBO7/8C18": 124.12,
+          "T100C18": 141.52,
+          "T125C18": 176.61,
+          "T150C18": 211.99,
+          "T200C18": 304.21,
+          "T250C18": 353.51,
+          "T300C18": 460.23,
+          "T50C30": 147.32,
+          "T75C30": 180.67,
+          "T100C30": 227.07,
+          "T125C30": 316.39,
+          "T150C30": 381.06,
+          "T200C30": 555.64,
+          "T250C30": 710.21,
+          "T300C30": 990.35,
+          "T400C30": 1323.27,
+          "T600C30.188": 3141.86,
+          "T75C40": 254.62,
+          "T200C40": 1199.73,
+          "T300C40": 3085.89,
+          "T600C40.280": 5128.07,
+          "T600C40.250": 5494.92,
+          "P3C146M": 350.61,
+          "P4C146ML": 413.83,
+          "P4C146M": 469.8,
+          "P5C146M": 548.1,
+          "P6C146M": 562.89,
+          "P8C146M": 786.48,
+          "P8C148M": 1010.65,
+          "P10C1410M": 1429.99,
+          "P12C1412M": 2137.3,
+          "P10C1210M": 2058.13,
+          "P12C1212M": 2988.16,
+          "S50C18L": 53.65,
+          "S75C18L": 82.36,
+          "S100C18L": 106.72,
+          "S125C18L": 132.53,
+          "S150C18L": 160.08,
+          "S200C18L": 215.47,
+          "S300C18L": 327.41,
+          "S600C18": 603.78,
+          "S50C316L": 83.81,
+          "S75C316L": 120.06,
+          "S100C316L": 159.5,
+          "S125C316L": 182.41,
+          "S150C316L": 237.8,
+          "S200C316L": 319.87,
+          "S250C316L": 379.32,
+          "S300C316L": 466.61,
+          "S400C316L": 853.47,
+          "S50C14": 102.95,
+          "S75C14": 153.99,
+          "S100C14": 206.19,
+          "S125C14": 251.43,
+          "S150C14": 333.79,
+          "S200C14": 409.77,
+          "S250C14": 513.3,
+          "S300C14": 611.61,
+          "S400C14": 908.28,
+          "S600C14": 1359.23,
+          "S500C14": 100000,
+          "S200C38": 666.42,
+          "S250C38": 753.42,
+          "S400C12": 2496.32,
+          "SPC12": 148.77,
+          "SPC58": 148.77,
+          "SPR12": 148.77,
+          "SPR58": 148.77,
+          "A75C.125": 177.19,
+          "A100C.125": 235.77,
+          "A75C18": 137.46,
+          "A100C18": 192.56,
+          "A125C18": 228.23,
+          "A150C18": 286.23,
+          "A200C18": 412.09,
+          "A100C316": 276.37,
+          "A125C316": 363.66,
+          "A150C316": 433.55,
+          "A200C316": 587.83,
+          "A300C316": 917.27,
+          "A150C14": 721.23,
+          "A200C14": 785.9,
+          "A250C14": 1008.04,
+          "A300C14": 1214.23,
+          "A400C14": 1812.5,
+          "A300C38": 2412.8,
+          "A400C38": 2815.61,
+          "VR38": 89.9,
+          "VR12": 151.38,
+          "VR58": 238.96,
+          "VR34": 335.82,
+          "VR1": 588.12,
+          "VR1Y34": 100000,
+          "VC38": 108.17,
+          "VC12": 174,
+          "VC58": 299.86,
+          "VC34": 432.68,
+          "VCAR12": 205.03,
+          "VCAR58": 329.73,
+          "SF18": 15.37,
+          "SF316": 30.16,
+          "SF14": 53.65,
+          "SF516": 103.24,
+          "T3C20": 1000.5,
+          "L3C28": 435.29,
+          "L4C28": 580,
+          "L5C28": 724.42,
+          "L6C28": 870.58,
+          "L8C28": 1063.72,
+          "L3C26": 524.32,
+          "L4C26": 698.32,
+          "L5C26": 872.32,
+          "L6C26": 1040.52,
+          "GT3C26RB": 597.11,
+          "GT3C26": 630.75,
+          "L6C26B": 813.74,
+          "AD38C14": 910.31,
+          "AD48C14": 1081.41,
+          "AD310C14": 1138.83,
+          "AD410C14": 1523.37,
+          "AD310C1/8": 1707.81,
+          "AD410C1/8": 2426.43,
+          "PINTROC26": 256.65,
+          "PINTRO410C26": 522.87,
+          "LRC38C14": 749.07,
+          "LRC310C14": 944.53,
+          "LRC48C14": 989.19,
+          "LRC410C14": 1232.21,
+          "LRF38C20": 455.59,
+          "LRF310C20": 569.56,
+          "LRF48C20": 604.94,
+          "LRF410C20": 760.38,
+          "LRF38C18": 609,
+          "LRF310C18": 760.38,
+          "LRF48C18": 805.91,
+          "LRF410C18": 1015,
+          "LRF38C16": 756.61,
+          "LRF310C16": 950.33,
+          "LRF48C16": 1026.89,
+          "LRF410C16": 1267.01,
+          "LRC410C11": 2030.58,
+          "PINTRO410C24": 595.08,
+          "LRF310C24G": 441.09,
+          "LRC38C11": 1240.33,
+          "LRC48C11": 1527.43,
+          "LRC310C11": 1533.23,
+          "LRC48C12": 1484.51,
+          "PP5": 41.47,
+          "PP6": 59.74,
+          "P30C316": 188.5,
+          "P30C14": 206.19,
+          "P30C38": 256.65,
+          "P30C12": 310.59,
+          "PR310C3/16": 2436.87,
+          "PR410C3/16": 4306.5,
+          "PR410C1/4": 4312.59,
+          "AD48C1/4": 5200.86,
+          "AD410C1/4": 6323.45,
+          "PR310C3/8": 6272.12,
+          "PR410C3/8": 6824.28,
+          "PR310C1/2": 6491.65,
+          "PR310C5/8": 14790,
+          "PR410C3/4": 100000,
+          "CN4M": 1401.86,
+          "CN4L": 100000,
+          "CN3M": 1430.57,
+          "CN6M": 3840.47,
+          "CN6M12M": 6579.52,
+          "CN8L": 4137.14,
+          "CN8L12M": 7201.08,
+          "CN8P12M": 10295,
+          "CN10L12M": 12525.12,
+          "HSS4X4C3/16": 4243.86,
+          "HSS4X4C1/4": 5390.52,
+          "HSS5X5C3/16": 5486.22,
+          "HSS5X5C1/4": 7148.79,
+          "HSS6X4C3/16": 5358.62,
+          "HSS6X6C3/16": 6607.65,
+          "HSS6X4C1/4": 7676.3,
+          "HSS6X6C1/4": 8131.02,
+          "HSS8X3C11": 5727.74,
+          "HSS8X4C3/16": 6795.57,
+          "HSS8X3C3/16": 8419.09,
+          "HSS8X4C1/4": 8826.15,
+          "HSS8X6C3/16": 10696.39,
+          "HSS8X8C3/16": 12387.11,
+          "HSS8X6C1/4": 13799.36,
+          "HSS8X8C3/8": 23739.08,
+          "HSS10X10C1/4": 20461.15,
+          "HSS12X6C3/16": 100000,
+          "CN12L12M": 11549.25,
+          "IPR4x4x19.3kgm": 8379.84,
+          "IPR6x4x13.4kgmx6M": 3087.05,
+          "IPR6x4x17.9kgmx6M": 3577.73,
+          "IPR6x4x13.4kgm": 5259.44,
+          "IPR6x4x17.9kgm": 6991.03,
+          "IPR6x4x23.8kgm": 12066.17,
+          "IPR6x6x29.7kgm": 15057.37,
+          "IPR8x4x14.9kgm": 5566.55,
+          "IPR8x5.25x26.9kgm": 9802,
+          "IPR8x4x19.4kgm": 9835.45,
+          "IPR8x5.25x31.3kgm": 15868.54,
+          "IPR10x4x17.9kgm": 6475.7,
+          "IPR10x5.75x32.8kgm": 11488.35,
+          "IPR12x4x20.9kgm": 8849.64,
+          "IPR12x6.5x38.7kgm": 14269.16,
+          "IPR12x6.5x44.7kgm": 16605.4,
+          "IPR12x8x74.5kgm": 37770.18,
+          "IPR14x5x32.7kgm": 12246.41,
+          "VINIL": 4.64,
+          "JALADERAG": 7.54,
+          "RESORTE": 14.21,
+          "EFERA15": 18.27,
+          "ESFERA20": 24.65,
+          "PERICOL": 18.27,
+          "PERICOG": 32.19,
+          "BRATON": 31.03,
+          "TAPABOLA20": 52.2,
+          "TAPA30": 87.58,
+          "TELA90": 66.41,
+          "TELA120": 83.23,
+          "PICOS8": 100.63,
+          "PIJAKLATH12": 0.58,
+          "PIJAKLATH34": 0.58,
+          "PIJAPLATEADA": 1.45,
+          "PIJADORADAE": 2.03,
+          "PIJADORADA": 2.9,
+          "PIJABOLSA34": 31.61,
+          "GIS": 6.38,
+          "BROCHA15": 17.4,
+          "BROCHA2": 22.04,
+          "SEGUETAPF": 29.87,
+          "SEGUETAPL": 30.45,
+          "S18": 82.36,
+          "S332": 85.55,
+          "VIDRIOCLARO": 3.77,
+          "VIDRIO11": 6.96,
+          "VIDRIO10": 7.54,
+          "VIDRIO12": 11.89,
+          "LENTESCLAROS": 23.2,
+          "LENTESOBSCUROS": 29.87,
+          "DADO": 29,
+          "CARETA258": 59.74,
+          "PORTACHICO": 343.94,
+          "DCP4E": 7.25,
+          "DCP4": 11.31,
+          "DL4EG40": 23.78,
+          "DL4EG60": 23.78,
+          "DL4EG80": 23.78,
+          "DC4": 31.9,
+          "DD4": 32.19,
+          "DL7EG80": 28.42,
+          "DCP7": 37.41,
+          "DCP7E": 37.41,
+          "DD7": 46.4,
+          "DL7EG40": 87.87,
+          "D14M": 66.99,
+          "MM": 109.91,
+          "MALLA120G": 120.35,
+          "MA14": 149.64,
+          "MA12": 193.72,
+          "MA10": 270.86,
+          "MN": 175.74,
+          "MG": 191.4,
+          "LP1/4C20": 1129.55,
+          "LP1/4C18": 1299.78,
+          "LP1/2C18": 1371.41,
+          "MGOT": 1295.14,
+          "CERROJO2": 13.34,
+          "PORTACANDADO2": 14.5,
+          "PORTACANDADO4": 18.56,
+          "PG3": 21.75,
+          "PG4": 31.61,
+          "PG6": 41.47,
+          "PG9": 43.21,
+          "PG12": 74.53,
+          "PR4": 52.78,
+          "PR7": 77.43,
+          "PPR9": 63.51,
+          "PPR12": 70.76,
+          "PPR16": 124.12,
+          "FGDGRANEL": 112.23,
+          "FGD": 124.12,
+          "FGGW": 252.01,
+          "FRGW": 252.01,
+          "NMAGRANEL": 160.95,
+          "NBDGRANEL": 169.65,
+          "NBD": 177.19,
+          "NMDGRANEL": 212.86,
+          "NMD": 213.44,
+          "NBGD": 631.62,
+          "RESANADOR": 167.04,
+          "RESANADORFLEX": 187.92,
+          "PLASTE": 298.7,
+          "RESANADORGALON": 435.29,
+          "CMDGRANEL": 169.65,
+          "CMD": 177.19,
+          "CMGD": 631.62,
+          "CMCD": 2592.31,
+          "BBDGRANEL": 169.94,
+          "BOD": 239.25,
+          "CDGRANEL": 199.52,
+          "TX38": 9.57,
+          "Z38": 10.44,
+          "TX12": 13.92,
+          "Z12": 15.08,
+          "TX58": 21.17,
+          "Z58": 28.71,
+          "BT12": 7.25,
+          "BT38": 7.54,
+          "BA32": 10.15,
+          "BT58": 12.76,
+          "BT34": 22.91,
+          "B33": 13.63,
+          "B33T": 20.88,
+          "B33R": 27.55,
+          "B44R": 42.05,
+          "BT1": 46.4,
+          "TEJ100": 24.94,
+          "TEJ125": 41.76,
+          "TEJ150": 51.04,
+          "TEJ200": 105.85,
+          "BA34": 49.88,
+          "BA1": 61.77,
+          "CVENT": 11.31,
+          "CLIVR": 83.23,
+          "CLIV": 123.25,
+          "RV5": 126.44,
+          "RV5CS": 186.76,
+          "RV8": 243.02,
+          "RV8CS": 329.44,
+          "RV10": 385.99,
+          "RV10CS": 472.41,
+          "RU5": 157.76,
+          "RU5CS": 186.76,
+          "RU8": 289.42,
+          "RU8CS": 329.44,
+          "RU10": 455.88,
+          "RU10CS": 472.41,
+          "CBALR": 214.89,
+          "CBAL": 363.95,
+          "CEUR": 344.52,
+          "ROMEG": 1717.67,
+          "PERILLA": 89.61,
+          "INSTADEXD": 159.79,
+          "INSTADEXI": 159.79,
+          "MANIJAESTANDAR": 189.37,
+          "MANIJASEGURIDAD": 379.61,
+          "CERROJOMARIPOSA": 198.38,
+          "CERROJOLLAVE": 237.22,
+          "CHAPAELECTRONICA": 2051.75,
+          "BARRADEXD": 200.97,
+          "BARRADEXI": 200.97,
+          "CERRADURASEGURIDAD": 451.53,
+          "DEXTERALTA": 842.45,
+          "MORDAZAIZQ": 511.85,
+          "MORDAZADER": 515.33,
+          "JALADERAH65": 536.5,
+          "JALADERAH45": 544.33,
+          "JALADERAH30": 555.28,
+          "JALADERAH80": 653.66,
+          "JALADERAL60": 1128.38,
+          "DNIQ": 556.51,
+          "DLATA": 613.35,
+          "DLATB": 644.09,
+          "GCOBA": 739.79,
+          "GLATA": 739.79,
+          "GLATB": 739.79,
+          "GNIQ": 739.79,
+          "BLATA": 854.34,
+          "PINAGRANDE": 19.43,
+          "COMARECTA": 25.52,
+          "COMACURVA": 28.71,
+          "ARO15": 35.67,
+          "ARO12": 37.12,
+          "CONCHARECTA": 45.53,
+          "CONCHAJR": 47.85,
+          "CONCHACHICA": 64.09,
+          "CONCHAMEDIANA": 93.96,
+          "CONCHAGRANDE": 108.17,
+          "SCHICALISA": 53.65,
+          "SGRANDELISA": 60.61,
+          "SLARGA": 69.31,
+          "CI12": 8.41,
+          "MCI12": 11.6,
+          "MCI58": 12.76,
+          "CI58": 13.92,
+          "CI34": 22.04,
+          "CN58": 10.44,
+          "CN12": 11.31,
+          "CNC12": 12.47,
+          "FB": 13.63,
+          "FG": 15.95
+
+
+        };
+
         const data = {
-            "a": {
-                "a1": [{ name: "Producto A1-1", id: "IDNAME:C100C18" }, { name: "Producto A1-2", id: "IDNAME:C100C19" }],
-                "a2": [{ name: "Producto A2-1", id: "IDNAME:C100C21" }, { name: "Producto A2-2", id: "IDNAME:C100C22" }]
-            },
-            "b": {
-                "b1": [{ name: "Producto B1-1", id: "IDNAME:C100C27" }, { name: "Producto B1-2", id: "IDNAME:C100C28" }],
-                "b2": [{ name: "Producto B2-1", id: "IDNAME:C100C30" }, { name: "Producto B2-2", id: "IDNAME:C100C31" }]
-            }
+
+                      "1":{"LOUVERS":[{name:"LOUVER BLIND 3 ", id:"LOUVER3"}],
+                            "PORTAVIDRIOS":[{name:"Portavidrios C20 ", id:"PVC20"}],
+                            "Angulos":[{name:"Angulo mosquitero C20 ", id:"AMC20"},{name:"Angulo Liso C20 ", id:"ALC20"},{name:"Angulo Ranurado C20 ", id:"ARC20"},{name:"Angulo Liso C18 ", id:"ALC18"}],
+                            "Rieles":[{name:"Riel para ventana C18 ", id:"RVC18"},{name:"Riel Ligero (1400) C18 ", id:"RSC18"},{name:"Riel Reforzado (1500) C16 ", id:"RRC16"},{name:"Riel Reforzado (1500) C14 ", id:"RRC14"}],
+                            "Duelas":[{name:"Duela chica C20 ", id:"DCC20"},{name:"Duela Ancha C20 ", id:"DAC20"}],
+                            "Marcos":[{name:"Marco Economico C20 ", id:"MEC20"},{name:"Marco Sencillo C20 ", id:"MSC20"},{name:"MARCO SENCILLO C20 GALV. - 6.6 kg", id:"MSC20G"},{name:"Marco Doble C20 ", id:"MDC20"}],
+                       "Tableros":[{name:"Tablero 3 x 3 C20 ", id:"TAB33"},{name:"Tablero 3 x 6 C20 ", id:"TAB36"},{name:"Tablero 3 x 8 C20 ", id:"TAB38"}],
+                       "Chambranas":[{name:"Chambrana Abierta C20 ", id:"CAC20"},{name:"Chambrana Tapada C20 ", id:"CTC20"},{name:"Chambrana Tapada C18 ", id:"CTC18"}],
+                       "Pasamanos":[{name:"Pasamanos C20 ", id:"PMC20"}],
+                       "Te":[{name:"Te Sencilla C20 ", id:"TSC20"},{name:"Te Doble C20 ", id:"TDC20"}],
+                       "Zetas":[{name:"Zeta C20 ", id:"ZC20"}],
+                       "Cajas con ceja":[{name:"Caja 1 C20 ", id:"P100C20"},{name:"Caja 1 1/2 C20 ", id:"P150C20"},{name:"Caja 2 C20 ", id:"P200C20"},{name:"Caja 2 1/2 C20 ", id:"P250C20"},{name:"Caja 1 1/2 C18 ", id:"P150C18"},{name:"Caja 3 C20 ", id:"P300C20"},
+                       {name:"Caja 2 C18 ", id:"P200C18"},{name:"Caja 4 C20 ", id:"P400C20"},{name:"Caja 3 C18 ", id:"P300C18"},{name:"Caja 2 1/2 C18 ", id:"P250C18"},{name:"Caja 4 C18 ", id:"P400C18"}],
+                       "Escalonados":[{name:"Escalonado C20 ", id:"EC20"}],
+                       "Manguetes":[{name:"Manguete 3 C20 ", id:"M300C20"}],},
+                       "2":{"C14":[{name:"PTR CUAD. 3/4 C14 ", id:"C75C14"},{name:"PTR CUAD. 1 C14 ", id:"C100C14"},{name:"PTR CUAD. 1 1/4 C14 ", id:"C125C14"},{name:"PTR CUAD. 1 1/2 C14 ", id:"C150C14"},{name:"PTR CUAD. 2 C14 ", id:"C200C14"},{name:"PTR CUAD. 2 1/2 C14 ", id:"C250C14"},{name:"PTR CUAD. 3 C14 ", id:"C300C14"},{name:"PTR CUAD. 4 C14 ", id:"C400C14"}],
+                       "C20":[{name:"CUADRADO 1/2 C20 ", id:"C50C20"},{name:"CUADRADO 3/4 C20 ", id:"C75C20"},{name:"CUADRADO 1 C20 ", id:"C100C20"},{name:"CUADRADO 1 1/4 C20 ", id:"C125C20"},{name:"CUADRADO 1 1/2 C20 ", id:"C150C20"}],
+                       "C18":[{name:"CUADRADO 1/2 C18 ", id:"C50C18"},{name:"CUADRADO 3/4 C18 ", id:"C75C18"},{name:"CUADRADO 1 C18 ", id:"C100C18"},{name:"CUADRADO 1 1/4 C18 ", id:"C125C18"},{name:"CUADRADO 1 1/2 C18 ", id:"C150C18"},{name:"CUADRADO 2 C18 ", id:"C200C18"}],
+                       "C16":[{name:"PTR CUAD. 3/4 C16 ", id:"C75C16"},{name:"PTR CUAD. 1 C16 ", id:"C100C16"},{name:"PTR CUAD. 1 1/4 C16 ", id:"C125C16"},{name:"PTR CUAD. 1 1/2 C16 ", id:"C150C16"}],
+                       "C11":[{name:"*PTR CUAD. 1 1/2 C11 [1/8] verde - 20.40 kg", id:"C150C11"},{name:"PTR CUAD. 2 C11 [1/8] verde ", id:"C200C11"},{name:"PTR CUAD. 3 C11 [1/8] Verde ", id:"C300C11"},{name:"PTR CUAD. 4 C11 [1/8] ", id:"C400C11"}],
+                       "C12":[{name:"PTR CUAD. 2 C12 blanco ", id:"C200C12"}],
+                       "C9":[{name:"PTR CUAD. 3 C9 ", id:"C300C9"}],
+                       "C7":[{name:"*PTR CUAD. 2 C7 - 41.45 kg", id:"C200C7"},{name:"*PTR CUAD. 4 C7 - 81.99 kg (Ofrecer HSS4X4C3/16 es muy similar)", id:"C400C7"}],},
+                       "3":{"C14":[{name:"PTR RECT. 2 x 1 C14 ", id:"R200C14"},{name:"PTR RECT. 2 1/2 x 1 1/4 C14 ", id:"R249C14"},{name:"PTR RECT. 2 1/2 x 1 1/2 C14 ", id:"R250C14"},{name:"PTR RECT. 3 x 1 1/2 C14 ", id:"R300C14"},{name:"PTR RECT. 3 x 2 C14 ", id:"R302C14"},{name:"PTR RECT. 4 x 1 1/2 C14 ", id:"R400C14"},{name:"PTR RECT. 4 x 2 C14 ", id:"R402C14"},{name:"PTR RECT. 6 x 2 C14 ", id:"R602C14"}],
+                       "C20":[{name:"REGLA 1 x 1/2 C20 ", id:"R100C20"},{name:"REGLA 1 1/4 x 3/4 C20 ", id:"R125C20"},{name:"REGLA 1 1/2 x 1/2 C20 ", id:"R155C20"},{name:"REGLA 1 3/4 x 3/4 C20 ", id:"R175C20"},{name:"REGLA 2 x 1 C20 ", id:"R200C20"},{name:"REGLA 2 1/4 x 3/4 C20 ", id:"R225C20"},{name:"RECTANGULAR 2 1/2 x 1 1/4 C20 ", id:"R249C20"},
+                       {name:"RECTANGULAR 2 1/2 x 1 1/2 C20 ", id:"R250C20"},{name:"RECTANGULAR 3 x 1 1/2 C20 ", id:"R300C20"},{name:"RECTANGULAR 4 x 1 1/2 C20 ", id:"R400C20"}],
+                       "C18":[{name:"REGLA 1 x 1/2 C18 ", id:"R100C18"},{name:"REGLA 1 1/4 x 3/4 C18 ", id:"R125C18"},{name:"REGLA 1 1/2 x 1/2 C18 ", id:"R155C18"},{name:"REGLA 1 1/2 x 1 C18 ", id:"R151C18"},{name:"REGLA 1 3/4 x 3/4 C18 ", id:"R175C18"},{name:"REGLA 2 x 1 C18 ", id:"R200C18"},
+                       {name:"REGLA 2 1/4 x 3/4 C18 ", id:"R225C18"},{name:"RECTANGULAR 2 1/2 x 1 1/4 C18 ", id:"R249C18"},{name:"RECTANGULAR 2 1/2 x 1 1/2 C18 ", id:"R250C18"},{name:"RECTANGULAR 3 x 1 1/2 C18 ", id:"R300C18"},{name:"RECTANGULAR 4 x 1 1/2 C18 ", id:"R400C18"}],
+                       "C16":[{name:"PTR RECT. 2 x 1 C16 ", id:"R200C16"}],
+                       "C11":[{name:"PTR RECT. 3 x 2 C11 [1/8] blanco ", id:"R302C11"},{name:"PTR RECT. 4 x 2 C11 [1/8] blanco - 41.55 kg", id:"R402C11"},{name:"*PTR RECT. 4 x 3 C11 [1/8] - 48.99 kg", id:"R403C11"},{name:"*PTR RECT. 3 x 1 1/2 C11 [1/8] - 26.78 kg", id:"R300C11"},{name:"*PTR RECT. 6 x 2 C11 [1/8] blanco - 56.37 kg", id:"R602C11"},{name:"*PTR RECT. 6 x 4 C11 [1/8] - 71.25 kg", id:"R604C11"}],
+                       "C12":[{name:"PTR RECT. 2 1/2 x 1 1/4 C12 ", id:"R249C12"}],
+                       "C7":[{name:"PTR RECT. 4 x 2 C7 - 59.85 kg", id:"R402C7"}],
+                       "C3/16":[{name:"*PTR RECT. 6 x 4 C3/16 - 108.52 kg", id:"R604C3/16"},{name:"PTR RECT. 4 x 2 C3/16 - 62.29 kg (Ofrecer R402C7 es muy similar)  ", id:"R402C3/16"}],},
+                       "4":{"C20":[{name:"TUBO 3/4 C20 ", id:"T75C20"},{name:"TUBO 1 C20 ", id:"T100C20"},{name:"TUBO 1 1/4 C20 ", id:"T125C20"},{name:"TUBO 1 1/2 C20 ", id:"T150C20"},{name:"TUBO 2 C20 ", id:"T200C20"}],
+                       "C18":[{name:"TUBO 1/2 C18 ", id:"T50C18"},{name:"TUBO 5/8 C18 ", id:"T63C18"},{name:"TUBO 3/4 C18 ", id:"T75C18"},{name:"TUBO 7/8 [SIETE OCTAVOS] C18 ", id:"TUBO7/8C18"},{name:"TUBO 1 C18 ", id:"T100C18"},{name:"TUBO 1 1/4 C18 ", id:"T125C18"},
+                       {name:"TUBO 1 1/2 C18 ", id:"T150C18"},{name:"TUBO 2 C18 ", id:"T200C18"},{name:"TUBO 2 1/2 C18 ", id:"T250C18"},{name:"TUBO 3 C18 ", id:"T300C18"}],
+                       "C30":[{name:"TUBO 1/2 CED.30 (0.69 int. y 0.84 Ext.) C14 1.9mm ", id:"T50C30"},{name:"TUBO 3/4 CED.30 (0.9 int. y 1.05 Ext.) C14 1.9mm ", id:"T75C30"},{name:"TUBO 1 CED.30 (1.165 int. y 1.315 Ext.) C14 1.9mm ", id:"T100C30"},{name:"TUBO 1 1/4 CED.30 (1.48 int. y 1.66 Ext.) C13 2.3mm ", id:"T125C30"},{name:"TUBO 1 1/2 CED.30 (1.72 int. y 1.9 Ext.) C13 2.3mm ", id:"T150C30"},{name:"TUBO 2 CED.30 (2.165 int. y 2.375 Ext.) C12 2.7mm ", id:"T200C30"},{name:"TUBO 2 1/2 CED.30 (2.665 int. y 2.875 Ext.) C12 2.7mm ", id:"T250C30"},{name:"TUBO 3 CED.30 (3.26 int. y 3.5 Ext.) C11 3.1mm ", id:"T300C30"},{name:"TUBO 4 CED.30 (4.26 int. y 4.5 Ext.) C11 3.1mm ", id:"T400C30"},{name:"TUBO 6 CED.30A 6.2M .188  (6.065 int. y 6.625 Ext.) 4.78 mm - 120 kg", id:"T600C30.188"}],
+                       "C40":[{name:"TUBO 3/4 CED.40 (0.9 int. y 1.05 Ext.) C12 2.66mm ", id:"T75C40"},{name:"TUBO 2 CED.40A 6.00 M (2.067 int. y 2.375 Ext.) C9 3.9mm - 32.7 kg", id:"T200C40"},{name:"TUBO 3 CED.40A 6.0M (3.068 int. y 3.5 Ext.) C4 5.5mm ", id:"T300C40"},{name:"TUBO 6 CED.40A 6.2M (6.065 int. y 6.625 Ext.) 7.1mm - 175 kg", id:"T600C40.280"},{name:"TUBO 6 CED.40A 6.2M .250  (6.065 int. y 6.625 Ext.) 6.35 mm - 157 kg", id:"T600C40.250"}],},
+                       "5":{"C14":[{name:"POLIN 3 x 1 1/2 C14 A 6M ", id:"P3C146M"},{name:"POLIN 4 LIGERO C14 A 6M (4x1.5) ", id:"P4C146ML"},{name:"POLIN DE 4 PESADO C14 A 6M (4x2)  ", id:"P4C146M"},{name:"POLIN 5 x 2 C14 A 6M ", id:"P5C146M"},{name:"POLIN 6 x 2 C14 A 6M ", id:"P6C146M"},{name:"POLIN 8 x 2 3/4 C14 A 6M ", id:"P8C146M"},{name:"POLIN 8 x 2 3/4 C14 A 8M ", id:"P8C148M"},{name:"POLIN 10 x 2 3/4 C14 A 10M ", id:"P10C1410M"},{name:"POLIN 12 x 3 1/2 C14 A 12M ", id:"P12C1412M"}],
+                       "C12":[{name:"POLIN 10 x 2 3/4 C12 A 10M - 90.6 kg", id:"P10C1210M"},{name:"POLIN 12 x 3 1/2 C12 A 12M - 131.88 kg", id:"P12C1212M"}],},
+                       "6":{"C1/8":[{name:"SOLERA LAM 1/2 x 1/8 ", id:"S50C18L"},{name:"SOLERA LAM 3/4 x 1/8 ", id:"S75C18L"},{name:"SOLERA LAM 1 x 1/8 ", id:"S100C18L"},{name:"SOLERA LAM 1 1/4 x 1/8 ", id:"S125C18L"},{name:"SOLERA LAM 1 1/2 x 1/8 ", id:"S150C18L"},{name:"SOLERA LAM 2 x 1/8 ", id:"S200C18L"},{name:"SOLERA LAM 3 x 1/8 ", id:"S300C18L"},{name:"SOLERA MOL 6 x 1/8 ", id:"S600C18"}],
+                       "C3/16":[{name:"SOLERA LAM 1/2 x 3/16 ", id:"S50C316L"},{name:"SOLERA LAM 3/4 x 3/16 ", id:"S75C316L"},{name:"SOLERA LAM 1 x 3/16 ", id:"S100C316L"},{name:"SOLERA LAM 1 1/4 x 3/16 ", id:"S125C316L"},{name:"SOLERA LAM 1 1/2 x 3/16 ", id:"S150C316L"},{name:"SOLERA LAM 2 x 3/16 ", id:"S200C316L"},
+                       {name:"SOLERA LAM 2 1/2 x 3/16 ", id:"S250C316L"},{name:"SOLERA LAM 3 x 3/16 ", id:"S300C316L"},{name:"SOLERA LAM 4 x 3/16 ", id:"S400C316L"}],
+                       "C1/4":[{name:"SOLERA MOL 1/2 x 1/4 ", id:"S50C14"},{name:"SOLERA MOL 3/4 x 1/4 ", id:"S75C14"},{name:"SOLERA MOL 1 x 1/4 ", id:"S100C14"},{name:"SOLERA MOL 1 1/4 x 1/4 ", id:"S125C14"},{name:"SOLERA MOL 1 1/2 x 1/4 ", id:"S150C14"},{name:"SOLERA MOL 2 x 1/4 ", id:"S200C14"},
+                       {name:"SOLERA MOL 2 1/2 x 1/4 ", id:"S250C14"},
+                       {name:"SOLERA MOL 3 x 1/4 ", id:"S300C14"},{name:"SOLERA MOL 4 x 1/4 - 30.93 kg", id:"S400C14"},{name:"SOLERA MOL 6 x 1/4 ", id:"S600C14"},
+                       {name:"*SOLERA MOL 5 x 1/4 - 38.62 kg", id:"S500C14"}],
+                       "C3/8":[{name:"SOLERA MOL 2 x 3/8 ", id:"S200C38"},{name:"SOLERA MOL 2 1/2 x 3/8 ", id:"S250C38"}],
+                       "C1/2":[{name:"*SOLERA MOL 4 x 1/2 - 61.8 kg", id:"S400C12"}],
+                       "SOLERA PERFORADA":[{name:"SOLERA PERF. CUAD. 1/2 ", id:"SPC12"},{name:"SOLERA PERF. CUAD. 5/8 ", id:"SPC58"},{name:"SOLERA PERF. RED. 1/2 ", id:"SPR12"},{name:"SOLERA PERF. RED. 5/8 ", id:"SPR58"}],},
+                       "7":{"Calibre 0.125":[{name:"ANGULO 3/4 x 1/8 ", id:"A75C.125"},{name:"ANGULO 1 x .125 ", id:"A100C.125"}],
+                       "Calibre 1/8":[{name:"ANGULO 3/4 x 1/8 ", id:"A75C18"},{name:"ANGULO 1 x 1/8 ", id:"A100C18"},{name:"ANGULO 1 1/4 x 1/8 ", id:"A125C18"},{name:"ANGULO 1 1/2 x 1/8 ", id:"A150C18"},{name:"ANGULO 2 x 1/8 ", id:"A200C18"}],
+                       "Calibre 3/16":[{name:"ANGULO 1 x 3/16 ", id:"A100C316"},{name:"ANGULO 1 1/4 x 3/16 ", id:"A125C316"},{name:"ANGULO 1 1/2 x 3/16 ", id:"A150C316"},{name:"ANGULO 2 x 3/16 ", id:"A200C316"},{name:"ANGULO 3 x 3/16 ", id:"A300C316"}],
+                       "Calibre 1/4":[{name:"ANGULO 1 1/2 x 1/4 - 21.29 kg", id:"A150C14"},{name:"ANGULO 2 x 1/4 ", id:"A200C14"},{name:"ANGULO 2 1/2 x 1/4 ", id:"A250C14"},{name:"ANGULO 3 x 1/4 ", id:"A300C14"},{name:"*ANGULO 4 x 1/4 - 60.39 kg", id:"A400C14"}],
+                       "Calibre 3/8":[{name:"*ANGULO 3 x 3/8 - 65.4 kg", id:"A300C38"},{name:"ANGULO 4 x 3/8 - 89.06 kg", id:"A400C38"}],},
+                       "8":{"Varilla Redonda":[{name:"VARILLA RED. 3/8 ", id:"VR38"},{name:"VARILLA RED. 1/2 ", id:"VR12"},{name:"VARILLA RED. 5/8 ", id:"VR58"},{name:"VARILLA RED. 3/4 ", id:"VR34"},{name:"VARILLA RED. 1 ", id:"VR1"},{name:"*VARILLA RED. 1 3/4 - 78 kg", id:"VR1Y34"}],
+                       "Varilla Cuadrada":[{name:"VARILLA CUAD. 3/8 ", id:"VC38"},{name:"VARILLA CUAD. 1/2 12mm ", id:"VC12"},{name:"VARILLA CUAD. 5/8 ", id:"VC58"},{name:"VARILLA CUAD. 3/4 ", id:"VC34"}],
+                       "Varilla Torcida/Caramelo":[{name:"VARILLA CARAMELO 1/2 ", id:"VCAR12"},{name:"VARILLA CARAMELO 5/8 ", id:"VCAR58"}],
+                       "SEMIFLECHA":[{name:"SEMIFLECHA 1/8 ", id:"SF18"},{name:"SEMIFLECHA 3/16 ", id:"SF316"},{name:"SEMIFLECHA 1/4 ", id:"SF14"},{name:"SEMIFLECHA 5/16 ", id:"SF516"}],},
+                       "9":{"TRASLUCIDA C20":[{name:"TRASLUCIDA 3 MTS C20 (Poliester Acrilico Ref. con Fibra de Vidrio) ", id:"T3C20"}],
+                       "C28":[{name:"LAMINA 3 MTS C28 ", id:"L3C28"},{name:"LAMINA 4 MTS C28 ", id:"L4C28"},{name:"LAMINA 5 MTS C28 ", id:"L5C28"},{name:"LAMINA 6 MTS C28 ", id:"L6C28"},{name:"LAMINA 8 MTS C28 ", id:"L8C28"}],
+                       "C26":[{name:"LAMINA 3 MTS C26 ", id:"L3C26"},{name:"LAMINA 4 MTS C26 ", id:"L4C26"},{name:"LAMINA 5 MTS C26 ", id:"L5C26"},{name:"LAMINA 6 MTS C26 ", id:"L6C26"}],
+                       "GALVATEJA C26":[{name:"GALVATEJA ROJA/BLANCA 3.05 x 1.10 C26 ", id:"GT3C26RB"},{name:"GALVATEJA 3.05 x 1.10 C26 ", id:"GT3C26"}],
+                       "PINTRO C26":[{name:"LAMINA 6 MTS x 97 CMS  C26 BLANCA/BEIGE ", id:"L6C26B"}],},
+                       "10":{"C14":[{name:"ANTIDERRAPANTE 3 x 8 Pies C14 ", id:"AD38C14"},{name:"ANTIDERRAPANTE 4 x 8 Pies C14 ", id:"AD48C14"},{name:"ANTIDERRAPANTE 3 x 10 Pies C14 ", id:"AD310C14"},{name:"ANTIDERRAPANTE 4 x 10 Pies C14 ", id:"AD410C14"}],
+                       "C1/8":[{name:"ANTIDERRAPANTE 3 x 10 Pies C1/8 ", id:"AD310C1/8"},{name:"ANTIDERRAPANTE 4 x 10 Pies C1/8 ", id:"AD410C1/8"}],},
+                       "11":{"Pintro C26":[{name:"PINTRO BLANCA C28 2.44x1.04 Mts ", id:"PINTROC26"},{name:"PINTRO BLANCA C26 3.05x1.10 Mts ", id:"PINTRO410C26"}],
+                       "C14":[{name:"LISA RC 3 x 8 Pies C14 (1.9 mm) ", id:"LRC38C14"},{name:"LISA RC 3 x 10 Pies C14 (1.9 mm) ", id:"LRC310C14"},{name:"LISA RC 4 x 8 Pies C14 (1.9 mm) ", id:"LRC48C14"},{name:"LISA RC 4 x 10 Pies C14 (1.9 mm) ", id:"LRC410C14"}],
+                       "C20":[{name:"LISA RF 3 x 8 Pies C20 (0.9 mm) ", id:"LRF38C20"},{name:"LISA RF 3 x 10 Pies C20 (0.9 mm) ", id:"LRF310C20"},{name:"LISA RF 4 x 8 Pies C20 (0.9 mm) ", id:"LRF48C20"},{name:"LISA RF 4 x 10 Pies C20 (0.9 mm) ", id:"LRF410C20"}],
+                       "C18":[{name:"LISA RF 3 x 8 Pies C18 (1.2 mm) ", id:"LRF38C18"},{name:"LISA RF 3 x 10 Pies C18 (1.2 mm) ", id:"LRF310C18"},{name:"LISA RF 4 x 8 Pies C18 (1.2 mm) ", id:"LRF48C18"},{name:"LISA RF 4 x 10 Pies C18 (1.2 mm) ", id:"LRF410C18"}],
+                       "C16":[{name:"LISA RF 3 x 8 Pies C16 (1.5 mm) - 27.21 kg", id:"LRF38C16"},{name:"LISA RF 3 x 10 Pies C16 (1.5 mm) ", id:"LRF310C16"},{name:"LISA RF 4 x 8 Pies C16 (1.5 mm) - 36.28 kg", id:"LRF48C16"},{name:"LISA RF 4 x 10 Pies C16 (1.5 mm) ", id:"LRF410C16"}],
+                       "C11":[{name:"LISA RC 4 x 10 Pies C11 [1/8] [1/8] (3.1 mm) ", id:"LRC410C11"}],
+                       "Pintro c24":[{name:"PINTRO BLANCA C24 3.05x1.22 Mts ", id:"PINTRO410C24"}],
+                       "Galvanizada C24":[{name:"LAMINA LISA GALVANIZADA C24 3' X 10'  ", id:"LRF310C24G"}],},
+                       "12":{"C11":[{name:"*LISA RC 3 x 8 Pies C11 [1/8] (3.1 mm) - 54.43 kg", id:"LRC38C11"},{name:"LISA RC 4 x 8 Pies C11 [1/8] (3.1 mm) - 72.57 kg", id:"LRC48C11"},{name:"*LISA RC 3 x 10  Pies C11 [1/8] (3.1 mm) - 68.03 kg", id:"LRC310C11"}],
+                       "C12":[{name:"LISA RC 4 x 8 Pies C12 (2.7 mm) - 63.5 kg", id:"LRC48C12"}],
+                       "PLACAS PARA BASES":[{name:"PLACA PERF. 5 ", id:"PP5"},{name:"PLACA PERF. 6 ", id:"PP6"},{name:"PLACA 30 x 30 C3/16 ", id:"P30C316"},{name:"PLACA 30 x 30 C1/4 ", id:"P30C14"},{name:"PLACA 30 x 30 C3/8 ", id:"P30C38"},{name:"PLACA 30 x 30 C1/2 ", id:"P30C12"}],
+                       "C10":[{name:"*PLACA DE ROLLO 3 x 10 Pies C3/16 - 105 kg", id:"PR310C3/16"}],
+                       "C3/16":[{name:"PLACA DE ROLLO 4 x 10 Pies C3/16", id:"PR410C3/16"}],
+                       "C1/4":[{name:"PLACA DE ROLLO 4 x 10 Pies C1/4 - 187 kg", id:"PR410C1/4"},{name:"ANTIDERRAPANTE 4 x 8 Pies C1/4 - 164 kg", id:"AD48C1/4"},{name:"ANTIDERRAPANTE 4 x 10 Pies C1/4 - 204.12 kg", id:"AD410C1/4"}],
+                       "C3/8":[{name:"PLACA DE ROLLO 3 x 10 Pies C3/8 - 211 kg", id:"PR310C3/8"},{name:"PLACA DE ROLLO 4 x 10 Pies C3/8 - 281 kg", id:"PR410C3/8"}],
+                       "C1/2":[{name:"*PLACA DE ROLLO 3 x 10 Pies C1/2 - 281 kg", id:"PR310C1/2"}],
+                       "C5/8":[{name:"*PLACA DE ROLLO 3 x 10 Pies C5/8 - 351 kg", id:"PR310C5/8"}],
+                       "C3/4":[{name:"PLACA DE ROLLO 4 x 10 Pies C3/4 - 565 kg", id:"PR410C3/4"}],},
+                       "13":{"Canal 4":[{name:"*CANAL 4 x 1.584 8.04 KG/M A 6.1M (Espesor: 0.184 x 0.296 ) - 49.05 kg", id:"CN4M"},{name:"*CANAL 4 x 1.584 6.7 KG/M A 6.1M (Espesor: 0.125 x 0.296 ) - 40.87 kg", id:"CN4L"}],
+                       "Canal 3":[{name:"*CANAL 3 x 1.41 6.1 KG/M A 6.1M (Espesor: 0.17 x 0.273 ) - 37.21 kg", id:"CN3M"}],
+                       "Canal 6":[{name:"*CANAL 6 x 2.034 15.63 KG/M A 6.1M (Espesor: 0.314 x 0.343 ) - 95.35 kg", id:"CN6M"},{name:"*CANAL 6 x 2.034 15.63 KG/M A 12.2M (Espesor: 0.314 x 0.343 ) - 190.69 kg", id:"CN6M12M"}],
+                       "Canal 8":[{name:"*CANAL 8 x 2.26 17.11 KG/M A 6.1M (Espesor: 0.22 x 0.39 ) - 104.38 kg", id:"CN8L"},{name:"*CANAL 8 x 2.26 17.11 KG/M A 12.2M (Espesor: 0.22 x 0.39 ) - 208.75 kg", id:"CN8L12M"},{name:"*CANAL 8 x 2.527 27.9 KG/M A 12.2M (Espesor: 0.487 x 0.39 ) - 340.38 kg", id:"CN8P12M"}],
+                       "Canal 10":[{name:"*CANAL 10 x 2.739 29.76 KG/M A 12.2M (Espesor: 0.379 x 0.436 ) - 363.08 kg", id:"CN10L12M"}],},
+                       "14":{"HSS 4":[{name:"HSS 4 X 4 CAL. 3/16 a 12.20 Mts - 176 kg", id:"HSS4X4C3/16"},{name:"HSS 4 X 4 CAL. 1/4 a 12.20 Mts - 231 kg", id:"HSS4X4C1/4"}],
+                       "HSS 5":[{name:"HSS 5 X 5 CAL. 3/16 a 12.20 Mts - 221 kg", id:"HSS5X5C3/16"},{name:"HSS 5 X 5 CAL. 1/4 a 12.20 Mts - 291 kg", id:"HSS5X5C1/4"}],
+                       "HSS 6":[{name:"HSS 6 X 4 CAL. 3/16 a 12.20 Mts - 217 kg", id:"HSS6X4C3/16"},{name:"HSS 6 X 6 CAL. 3/16 a 12.20 Mts - 267 kg", id:"HSS6X6C3/16"},{name:"HSS 6 X 4 CAL. 1/4 a 12.20 Mts - 284 kg", id:"HSS6X4C1/4"},{name:"HSS 6 X 6 CAL. 1/4 a 12.20 Mts - 352 kg", id:"HSS6X6C1/4"}],
+                       "HSS 8":[{name:"HSS 8 X 3 CAL 11 (.125) a 12.20 Mts - 166 kg", id:"HSS8X3C11"},{name:"HSS 8 X 4 CAL. 3/16 a 12.20 Mts - 264 kg", id:"HSS8X4C3/16"},{name:"HSS 8 X 3 CAL.188 a 12.20 Mts - 244 kg", id:"HSS8X3C3/16"},{name:"HSS 8 X 4 CAL. 1/4 a 12.20 Mts - 345 kg", id:"HSS8X4C1/4"},{name:"HSS 8 X 6 CAL. 3/16 a 12.20 Mts - 310 kg", id:"HSS8X6C3/16"},{name:"HSS 8 X 8 CAL. 3/16 a 12.20 Mts - 359 kg", id:"HSS8X8C3/16"},
+                       {name:"HSS 8 X 6 CAL. 1/4 a 12.20 Mts - 407 kg", id:"HSS8X6C1/4"},{name:"HSS 8 X 8 CAL. 3/8 a 12.20 Mts - 688 kg", id:"HSS8X8C3/8"}],
+                       "HSS 10":[{name:"HSS 10 X 10 CAL. 1/4 a 12.20 Mts - 593 kg", id:"HSS10X10C1/4"}],
+                       "HSS 12":[{name:"HSS 12 X 6 CAL. 3/16 a 12.20 Mts - 403 kg", id:"HSS12X6C3/16"}],},
+                       "15":{"Canal 12":[{name:"*CANAL 12 x 2.942 30.8 KG/M A 12.2M (Espesor: 0.282 x 0.501 ) - 375.76 kg", id:"CN12L12M"}],
+                       "IPR 4":[{name:"VIGA IPR 4 x 4 (Real: 4.16x4.06) 19.3 KG/M A 12.2M (Espesor: 0.28 x 0.35 ) - 235.46 kg", id:"IPR4x4x19.3kgm"}],
+                       "IPR 6":[{name:"VIGA IPR 6 x 4 (Real: 5.9x3.94) 13.4 KG/M A 6.1METROS (Espesor: 0.17 x 0.22 ) - 81.74 kg", id:"IPR6x4x13.4kgmx6M"},{name:"VIGA IPR 6 x 4 (Real: 6.03x4) 17.9 KG/M A 6.1METROS (Espesor: 0.23 x 0.28 ) - 109.19 kg", id:"IPR6x4x17.9kgmx6M"},{name:"VIGA IPR 6 x 4 (Real: 5.9x3.94) 13.4 KG/M A 12.2M (Espesor: 0.17 x 0.22 ) - 163.48 kg", id:"IPR6x4x13.4kgm"},{name:"VIGA IPR 6 x 4 (Real: 6.03x4) 17.9 KG/M A 12.2M (Espesor: 0.23 x 0.28 ) - 218.38 kg", id:"IPR6x4x17.9kgm"},{name:"*VIGA IPR 6 x 4 (Real: 6.28x4.03) 23.8 KG/M A 12.2M (Espesor: 0.26 x 0.41 ) - 290.36 kg", id:"IPR6x4x23.8kgm"},{name:"*VIGA IPR 6 x 6 (Real: 6.2x6.02) 29.7 KG/M A 12.2M (Espesor: 0.26 x 0.37 ) - 362.34 kg", id:"IPR6x6x29.7kgm"}],
+                       "IPR 8":[{name:"VIGA IPR 8 x 4 (Real: 7.89x3.94) 14.9 KG/M A 12.2M (Espesor: 0.17 x 21 ) - 181.78 kg", id:"IPR8x4x14.9kgm"},{name:"VIGA IPR 8 x 5 1/4 (Real: 8.14x5.25) 26.9 KG/M A 12.2M (Espesor: 0.23 x 0.33 ) - 328.18 kg", id:"IPR8x5.25x26.9kgm"},{name:"*VIGA IPR 8 x 4 (Real: 7.99x4) 19.4 KG/M A 12.2M (Espesor: 0.23 x 0.26 ) - 236.68 kg", id:"IPR8x4x19.4kgm"},{name:"*VIGA IPR 8 x 5 1/4 (Real: 8.28x5.27) 31.3 KG/M A 12.2M (Espesor: 0.25 x 0.4 ) - 381.86 kg", id:"IPR8x5.25x31.3kgm"}],
+                       "IPR 10":[{name:"VIGA IPR 10 x 4 (Real: 9.87x3.96) 17.9 KG/M A 12.2M (Espesor: 0.19 x 0.21 ) - 218.38 kg", id:"IPR10x4x17.9kgm"},{name:"*VIGA IPR 10 x 5 3/4 (Real: 10.17x5.75) 32.8 KG/M A 12.2M (Espesor: 0.24 x 0.36 ) - 400.16 kg", id:"IPR10x5.75x32.8kgm"}],
+                       "IPR 12":[{name:"VIGA IPR 12 x 4 (Real: 11.91x3.97) 20.9 KG/M A 12.2M (Espesor: 0.2 x 0.23 ) - 254.98 kg", id:"IPR12x4x20.9kgm"},{name:"VIGA IPR 12 x 6 1/2 (Real: 12.22x6.49) 38.7 KG/M A 12.2M (Espesor: 0.23 x 0.38 ) - 472.14 kg", id:"IPR12x6.5x38.7kgm"},{name:"VIGA IPR 12 x 6 1/2 (Real: 12.34x6.52) 44.7 KG/M A 12.2M (Espesor: 0.26 x 0.44 ) - 545.34 kg", id:"IPR12x6.5x44.7kgm"},{name:"VIGA IPR 12 x 8 (Real: 12.19x8.08) 74.5 KG/M A 12.2M (Espesor: 0.37 x 0.64 ) - 908.9 kg", id:"IPR12x8x74.5kgm"}],
+                       "IPR 14":[{name:"VIGA IPR 14 x 5 (Real: 13.74x5) 32.7 KG/M A 12.2M (Espesor: 0.23 x 0.34 ) - 398.94 kg", id:"IPR14x5x32.7kgm"}],},
+                       "16":{"Vinil":[{name:"VINIL P/MOSQ. BLANCO HUECO ESTRIADO(5.7 MM.) ", id:"VINIL"}],
+                       "Jaladeras":[{name:"JALADERA GALV. 2 AGUJEROS ", id:"JALADERAG"}],
+                       "Resortes":[{name:"RESORTE PUERTA MOSQUITERA GALV. ", id:"RESORTE"}],
+                       "Esferas":[{name:"ESFERA 1.5 ", id:"EFERA15"},{name:"ESFERA 2 ", id:"ESFERA20"}],
+                       "Pericos":[{name:"PERICO LAMINA C/DOBLES ", id:"PERICOL"},{name:"PERICO ZAMAC GALVANIZADO ", id:"PERICOG"}],
+                       "Broches ventana":[{name:"BROCHE OREJA D/RATON ", id:"BRATON"}],
+                       "Tapas":[{name:"Tapa con bola 2 ", id:"TAPABOLA20"},{name:"Tapa 3 ", id:"TAPA30"}],
+                       "Telas":[{name:"TELA MOSQUITERA GALV. 90 CM ", id:"TELA90"},{name:"TELA MOSQUITERA GALV. 1.20 MTS ", id:"TELA120"}],
+                       "Picos de seguridad":[{name:"PICOS 8 PUNTAS ", id:"PICOS8"}],
+                       "Pijas":[{name:"PIJA CAB.REDONDA 1/2 (K-LATH) ", id:"PIJAKLATH12"},{name:"PIJA CAB.REDONDA 3/4 (K-LATH) ", id:"PIJAKLATH34"},{name:"PIJA P/BROCA 1/4 X 1 ", id:"PIJAPLATEADA"},{name:"Pija Dorada Armada 1 Economica ", id:"PIJADORADAE"},{name:"Pija Dorada Armada 1 ", id:"PIJADORADA"},{name:"PIJA BOLSA 100 PZA CAB.FIJ 3/4 GALV. ", id:"PIJABOLSA34"}],
+                       "Gis":[{name:"GIS MARCADOR DE JABON ", id:"GIS"}],
+                       "Brochas":[{name:"BROCHA 1.5 ", id:"BROCHA15"},{name:"BROCHA 2 ", id:"BROCHA2"}],
+                       "Seguetas":[{name:"SEGUETA LENOX P/ FIERRO ", id:"SEGUETAPF"},{name:"SEGUETA LENOX P/ LAMINA ", id:"SEGUETAPL"}],
+                       "SOLDADURA":[{name:"SOLDADURA 1/8 E6013VT ", id:"S18"},{name:"SOLDADURA 3/32 E6013VT ", id:"S332"}],
+                       "Vidrio":[{name:"VIDRIO PARA SOLDAR CLARO ", id:"VIDRIOCLARO"},{name:"VIDRIO PARA SOLDAR SOMBRA 11 ", id:"VIDRIO11"},{name:"VIDRIO PARA SOLDAR SOMBRA 10 ", id:"VIDRIO10"},{name:"VIDRIO PARA SOLDAR SOMBRA 12 ", id:"VIDRIO12"}],
+                       "Lentes":[{name:"LENTES CLAROS ", id:"LENTESCLAROS"},{name:"LENTES OBSCUROS ", id:"LENTESOBSCUROS"}],
+                       "Dados":[{name:"DADO 3/8 P.PIJA HEXAGONAL IMANTADO COD.KL2164 ", id:"DADO"}],
+                       "Caretas":[{name:"CARETA 0258 TERMO.P/SOLDAR ", id:"CARETA258"}],
+                       "Porta Electrodos":[{name:"PORTA ELECT. CHICO 250A. RED FORCE ", id:"PORTACHICO"}],},
+                       "17":{"De 4.5 Pulgadas":[{name:"DISCO CORTE PRECISO 4.5 Economico ", id:"DCP4E"},{name:"DISCO CORTE PRECISO 4.5 MAKITA ", id:"DCP4"},{name:"DISCO LAMINADO 4.5 Economico G40 ", id:"DL4EG40"},{name:"DISCO LAMINADO 4.5 Economico G60 ", id:"DL4EG60"},{name:"DISCO LAMINADO 4.5 Economico G80 ", id:"DL4EG80"},{name:"DISCO CORTE METAL 4.5 x 1/8 ", id:"DC4"},{name:"DISCO DESBASTE 4.5 ", id:"DD4"}],
+                       "De 7 Pulgadas":[{name:"DISCO LAMINADO 7 Economico G80 ", id:"DL7EG80"},{name:"DISCO CORTE PRECISO 7 MAKITA ", id:"DCP7"},{name:"DISCO CORTE PRECISO 7 Economico ", id:"DCP7E"},{name:"DISCO DESBASTE 7 ", id:"DD7"},{name:"DISCO LAMINADO 7 Economico G40 ", id:"DL7EG40"}],
+                       "DE 14 PULGADAS P. CORTADORA":[{name:"DISCO 14 MAKITA ", id:"D14M"}],},
+                       "18":{"Mecedora":[{name:"MALLA PARA MECEDORA ", id:"MM"}],
+                       "Mosquitera por metros":[{name:"MALLA GALV. 1.20(Metro Lineal) ", id:"MALLA120G"}],
+                       "Asador por metros":[{name:"MALLA PARA ASADOR C14 SP ", id:"MA14"},{name:"MALLA PARA ASADOR CALIBRE 12 ", id:"MA12"},{name:"MALLA PARA ASADOR CALIBRE 10 ", id:"MA10"}],
+                       "Mosquitera PIEZA":[{name:"MALLA NEGRA ", id:"MN"},{name:"MALLA GALVANIZADA ", id:"MG"}],
+                       "Perforada Pieza":[{name:"LAMINA PERFORADA 1/4 Cal. 20  1 X 2 Metros ", id:"LP1/4C20"},{name:"LAMINA PERFORADA 1/4 Cal. 18  1 X 2 Metros ", id:"LP1/4C18"},{name:"LAMINA PERFORADA 1/2 Cal. 18  1 X 2 Metros ", id:"LP1/2C18"}],
+                       "Gotica Pieza":[{name:"MALLA GOTICO ", id:"MGOT"}],},
+                       "19":{"Cerrojo":[{name:"CERROJO 2  ", id:"CERROJO2"}],
+                       "Porta candado":[{name:"PORTACANDADO 2 GALV.(P50) ", id:"PORTACANDADO2"},{name:"PORTACANDADO 4 GALV.(P100) ", id:"PORTACANDADO4"}],
+                       "Pasador Galvanizado":[{name:"PASADOR GALV. 3  V.3/8(R5) ", id:"PG3"},{name:"PASADOR GALV. 4  V.1/2(R10) ", id:"PG4"},{name:"PASADOR GALV. 6 V.5/8(R15) ", id:"PG6"}],
+                       "Picaporte Galvanizado":[{name:"PICAPORTE GALV. 9 V.1/2 ", id:"PG9"},{name:"PICAPORTE GALV. 12 V.1/2 ", id:"PG12"}],
+                       "Pasador Rustico":[{name:"PASADOR RUST. 4 (R11) ", id:"PR4"},{name:"PASADOR RUST. 7 ", id:"PR7"}],
+                       "Picaporte Rustico":[{name:"PICAPORTE RUST. 9 RED. 1/2(A20) ", id:"PPR9"},{name:"PICAPORTE RUST. 12V.1/2(A30) ", id:"PPR12"},{name:"PICAPORTE RUST.16 V.5/8 ", id:"PPR16"}],},
+                       "20":{"Fondos":[{name:"FONDO GRIS DOAL GRANEL ", id:"FGDGRANEL"},{name:"FONDO GRIS DOAL LITRO ", id:"FGD"},{name:"FONDO GRIS GALON Wherever ", id:"FGGW"},{name:"FONDO ROJO GALON Wherever ", id:"FRGW"}],
+                       "Negro":[{name:"Negro Mate GRANEL ASPEN ", id:"NMAGRANEL"},{name:"Negro BRILLANTE GRANEL Doal Celerix ", id:"NBDGRANEL"},{name:"Negro Bte. LITRO DOAL Celerix ", id:"NBD"},{name:"Negro Mate GRANEL DOAL Linea 1000 ", id:"NMDGRANEL"},{name:"Negro MATE LITRO DOAL Linea 1000 ", id:"NMD"},{name:"Negro Bte. GALON DOAL Celerix ", id:"NBGD"}],
+                       "Resanadores y Plastes":[{name:"RESANADOR LITRO DOAL ", id:"RESANADOR"},{name:"Resanador FX FLEX Litro ", id:"RESANADORFLEX"},{name:"PLASTE LITRO ", id:"PLASTE"},{name:"RESANADOR GALON DOAL ", id:"RESANADORGALON"}],
+                       "Chocolate":[{name:"Chocolate semimate GRANEL DOAL Celerix ", id:"CMDGRANEL"},{name:"Chocolate Semimate LITRO DOAL Celerix ", id:"CMD"},{name:"Chocolate Semimate GALON DOAL Celerix ", id:"CMGD"},{name:"Chocolate Semimate CUBETA DOAL Celerix ", id:"CMCD"}],
+                       "Blanco":[{name:"Blanco Brillante GRANEL DOAL Celerix ", id:"BBDGRANEL"},{name:"Blanco OSTION LITRO DOAL Linea 1000 ", id:"BOD"}],
+                       "Cafe":[{name:"Cafe GRANEL DOAL Linea 1000 ", id:"CDGRANEL"}],},
+                       "21":{"Broca 3/8":[{name:"TAQUETE TX 1/4 P.3/8 ", id:"TX38"},{name:"TAQUETE Z 3/16 P.3/8 ", id:"Z38"}],
+                       "Broca 1/2":[{name:"TAQUETE TX 3/8 P.1/2 ", id:"TX12"},{name:"TAQUETE Z 1/4 P.1/2 ", id:"Z12"}],
+                       "Broca 5/8":[{name:"TAQUETE TX 1/2 P.5/8 ", id:"TX58"},{name:"TAQUETE Z 3/8 P.5/8 ", id:"Z58"}],},
+                       "22":{"Tubulares":[{name:"BISAGRA TUBULAR 1/2 ", id:"BT12"},{name:"BISAGRA TUBULAR 3/8 ", id:"BT38"},{name:"BISAGRA LIGERA ALARGADA 3X2 ", id:"BA32"},{name:"BISAGRA TUBULAR 5/8 ", id:"BT58"},{name:"BISAGRA TUBULAR 3/4 ", id:"BT34"}],
+                       "Libro":[{name:"BISAGRA 3X3 ", id:"B33"},{name:"BISAGRA 3X3 Tropicalizada ", id:"B33T"},{name:"BISAGRA 3X3 REFORZADA ", id:"B33R"},{name:"BISAGRA 4 REFORZADA ", id:"B44R"},{name:"BISAGRA TUBULAR 1 ", id:"BT1"}],
+                       "Tejuelo":[{name:"TEJUELO 1 ", id:"TEJ100"},{name:"TEJUELO 1.25 ", id:"TEJ125"},{name:"TEJUELO 1 1/2 ", id:"TEJ150"},{name:"TEJUELO 2 ", id:"TEJ200"}],
+                       "Ancla":[{name:"BISAGRA DE ANCLA 3/4 ", id:"BA34"},{name:"BISAGRA DE ANCLA 1 ", id:"BA1"}],},
+                       "23":{"Corredor de Ventana":[{name:"CORREDOR 350 VENTANA RADIAL GALV. ", id:"CVENT"}],
+                       "Corredor liviano":[{name:"Corredor Liviano RESINA 8150 ", id:"CLIVR"},{name:"Corredor Liviano FIERRO 8150 ", id:"CLIV"}],
+                       "Rueda V":[{name:"Rueda V Chica 5 cm ", id:"RV5"},{name:"Rueda V Chica 5 cm CON SOPORTE ", id:"RV5CS"},{name:"Rueda V MEDIANA 8 cm ", id:"RV8"},{name:"Rueda V MEDIANA 8 cm CON SOPORTE ", id:"RV8CS"},{name:"RUEDA V GRANDE 10 cm ", id:"RV10"},{name:"RUEDA V GRANDE 10 cm CON SOPORTE ", id:"RV10CS"}],
+                       "Rueda U":[{name:"Rueda U Chica 5 cm ", id:"RU5"},{name:"Rueda U Chica 5 cm CON SOPORTE ", id:"RU5CS"},{name:"Rueda U MEDIANA 8 cm ", id:"RU8"},{name:"Rueda U MEDIANA 8 cm CON SOPORTE ", id:"RU8CS"},{name:"RUEDA U GRANDE 10 cm ", id:"RU10"},{name:"RUEDA U GRANDE 10 cm CON SOPORTE ", id:"RU10CS"}],
+                       "Corredor Pesado":[{name:"Corredor Pesado RESINA 9140 ", id:"CBALR"},{name:"Corredor Pesado FIERRO 9140 ", id:"CBAL"}],
+                       "Corredor Nylon":[{name:"CORREDOR EUROPEO NYLON CE4-38N ", id:"CEUR"}],
+                       "Riel Para Rueda U":[{name:"RIEL OMEGA ITALIANO 5.8 METROS PARA RUEDA U 8 MM ", id:"ROMEG"}],},
+                       "24":{"Perilla":[{name:"Cerradura de Perilla BARZA ", id:"PERILLA"}],
+                       "Instalafacil":[{name:"CERRADURA DEXTER INSTAFACIL DERECHA 6760 ", id:"INSTADEXD"},{name:"CERRADURA DEXTER INSTAFACIL IZQUIERDA 6761 ", id:"INSTADEXI"}],
+                       "Manija":[{name:"MANIJA Llave Estandar-Boton Niquel ", id:"MANIJAESTANDAR"},{name:"MANIJA Llave de Puntos-Boton Niquel (ALTA SEGURIDAD) ", id:"MANIJASEGURIDAD"}],
+                       "Cerrojo":[{name:"CERROJO Llave-Mariposa Niquel ", id:"CERROJOMARIPOSA"},{name:"CERROJO Llave-Llave Niquel ", id:"CERROJOLLAVE"},{name:"Cerrojo Dexter Electronico Ambidiestro de  45-55mm ", id:"CHAPAELECTRONICA"}],
+                       "Barra":[{name:"Cerradura Barra DERECHA SIN GARANTIA (Revisar al recibir)", id:"BARRADEXD"},{name:"Cerradura Barra IZQUIERDA SIN GARANTIA (Revisar al recibir)", id:"BARRADEXI"}],
+                       "Alta Seguridad":[{name:"CERRADURA ALTA SEGURIDAD Automatica DEXTER  Niquel Satinado 6772 ", id:"CERRADURASEGURIDAD"},{name:"Cerradura Alta Seguriad de 4 Bulones 60mm Ambidiestra ", id:"DEXTERALTA"}],
+                       "Mordaza":[{name:"CERRADURA DE MORDAZA IZQ COD.6739 ", id:"MORDAZAIZQ"},{name:"CERRADURA DE MORDAZA DER COD.6738 ", id:"MORDAZADER"}],
+                       "Jaladera Residencial":[{name:"JALADERA RESIDENCIAL H 65CM ", id:"JALADERAH65"},{name:"JALADERA RESIDENCIAL H 45CM ", id:"JALADERAH45"},{name:"JALADERA RESIDENCIAL H 30CM ", id:"JALADERAH30"},{name:"JALADERA RESIDENCIAL H 80CM ", id:"JALADERAH80"},{name:"JALADERA RESIDENCIAL L 60CM (Cuadrada) ", id:"JALADERAL60"}],
+                       "Residencial Dalton (Ovalada lisa)":[{name:"CERRADURA DALTON  Niquel Satinado 6741 ", id:"DNIQ"},{name:"CERRADURA DALTON  Laton Antiguo 6740 ", id:"DLATA"},{name:"CERRADURA DALTON  Laton Brillante 6742 ", id:"DLATB"}],
+                       "Residencial Genova (Cuadrada con gravado)":[{name:"CERRADURA GENOVA Cobre Antiguo 4190 ", id:"GCOBA"},{name:"CERRADURA GENOVA Laton Antiguo 4188 ", id:"GLATA"},{name:"CERRADURA GENOVA Laton Brillante 4189 ", id:"GLATB"},{name:"CERRADURA GENOVA Niquel Satinado 6755 ", id:"GNIQ"}],
+                       "Residencial Boston (Cuadrada lisa)":[{name:"CERRADURA BOSTON  Laton Antiguo 6305 ", id:"BLATA"}],},
+                       "25":{"PIÑA":[{name:"PINA GRANDE - PINA ", id:"PINAGRANDE"}],
+                       "Coma":[{name:"FIG. C-1 (Coma Recta) 16x12 - COMARECTA ", id:"COMARECTA"},{name:"FIG. B-1 (Coma Curva) 16.8x12 - COMACURVA ", id:"COMACURVA"}],
+                       "Aro":[{name:"FIG. C-4 (Aro Varilla 15cm) - ARO15 ", id:"ARO15"},{name:"FIG. C-3 (Aro Varilla 12cm) - ARO12 ", id:"ARO12"}],
+                       "Concha":[{name:"FIG. C-2 (Concha Recta) 21x12 - CONCHARECTA ", id:"CONCHARECTA"},{name:"FIG. B-2 (Concha Jr.) 21x14 - CONCHAJR ", id:"CONCHAJR"},{name:"FIG. B-8 (Concha Chica) 30x17 - CONCHACHICA ", id:"CONCHACHICA"},{name:"FIG. B-6 (Concha Mediana) 40x22 - CONCHAMEDIANA ", id:"CONCHAMEDIANA"},{name:"FIG. Concha Grande 40x28 - CONCHAGRANDE ", id:"CONCHAGRANDE"}],
+                       "eSe":[{name:"FIG. C-15 LISA (S Chica Lisa) 28x12 - SCHICALISA ", id:"SCHICALISA"},{name:"FIG. C-7 LISA (S Grande Lisa) 36x12 - SGRANDELISA ", id:"SGRANDELISA"},{name:"FIG. B-7 (S Larga) 45.2x12.9 - SLARGA ", id:"SLARGA"}],},
+                       "26":{"Ingles":[{name:"CUELLO INGLES LIV. 1/2 (251L) ", id:"CI12"},{name:"MEDIO CUELLO Ing P.1/2(251H) ", id:"MCI12"},{name:"MEDIO CUELLO ING. 5/8(251H) ", id:"MCI58"},{name:"CUELLO INGLES 5/8(251) ", id:"CI58"},{name:"CUELLO INGLES 3/4(251) ", id:"CI34"}],
+                       "Napolitano":[{name:"CUELLO NAPOLIT LIV. 5/8(N06) ", id:"CN58"},{name:"CUELLO NAPOLITANO REDONDO 1/2(N06) ", id:"CN12"},{name:"CUELLO NAPOLITANO CUADRADO 1/2(N06) ", id:"CNC12"}],
+                       "Flechas":[{name:"FLECHA BARROCO 1/2(7021) ", id:"FB"}],
+                       "Galo":[{name:"FLECHA GALO CUADRADO 1/2(218) ", id:"FG"}]
+}
+
         };
 
         let productCounter = 0;
-        const maxProducts = 30;
+        let totalGeneral = 0;
         const selectedSearchProducts = {};
 
         function updateProductCount() {
             document.getElementById('productCount').textContent = `Productos seleccionados: ${productCounter}`;
         }
 
+        function updateTotalGeneral() {
+            document.getElementById('totalGeneral').textContent = `Total General: $${totalGeneral.toFixed(2)}`;
+        }
+
+
+
+
+        function calculateTotalForRow(index) {
+            const selectedProduct = selectedSearchProducts[`product${index}`] || {};
+            const productId = selectedProduct.id || document.getElementById(`product${index}`).value;
+            const quantity = parseInt(document.getElementById(`quantity${index}`).value) || 0;
+
+            let totalPorPartida = 0; // Inicializar en 0 por defecto
+
+            if (productId && prices[productId]) {
+                totalPorPartida = prices[productId] * quantity;
+            }
+
+            // Actualizar el total de la partida en el DOM
+            document.getElementById(`totalPartida${index}`).textContent = `Total Partida: $${totalPorPartida.toFixed(2)}`;
+
+            // Recalcular el total general
+            calculateTotalGeneral();
+        }
+
+
+
+
+
+        function calculateTotalGeneral() {
+            totalGeneral = 0;
+            for (let i = 0; i < productCounter; i++) {
+                const selectedProduct = selectedSearchProducts[`product${i}`] || {};
+                const productId = selectedProduct.id || document.getElementById(`product${i}`).value;
+                const quantity = parseInt(document.getElementById(`quantity${i}`).value) || 0;
+
+                if (productId && prices[productId]) {
+                    totalGeneral += prices[productId] * quantity;
+                }
+            }
+            updateTotalGeneral();
+        }
+
         function addProductRow() {
-      if (productCounter < maxProducts) {
-          const productContainer = document.getElementById('productContainer');
-          const productRow = document.createElement('div');
-          productRow.className = 'product-row';
-          productRow.innerHTML = `
-    <h2>Producto ${productCounter + 1}
-        <div class="switch-container">
-            <span>Búsqueda directa</span>
-            <div class="toggle-switch" onclick="toggleSearchMode(${productCounter})"></div>
-        </div>
-    </h2>
-    <div class="dropdown-container active">
-        <div class="dropdown-group">
-            <label for="category${productCounter}"></label>             <!-- categoria -->
-            <select id="category${productCounter}" onchange="handleCategoryChange(${productCounter})">
-                <option value="">Selecciona una categoría</option>
-                <option value="" disabled>------------------------------VIGAS------------------------------</option>
-                <option value="a">Categoría A</option>
-                <option value="" disabled>CANAL</option>
-                <option value="b">Categoría B</option>
-            </select>
+            if (productCounter < 30) {
+                const productContainer = document.getElementById('productContainer');
+                const productRow = document.createElement('div');
+                productRow.className = 'product-row';
+                productRow.innerHTML = `
+                    <h2>Producto ${productCounter + 1}
+                        <div class="switch-container">
+                            <span>Búsqueda directa</span>
+                            <div class="toggle-switch" onclick="toggleSearchMode(${productCounter})"></div>
+                        </div>
+                    </h2>
+                    <div class="dropdown-container active">
+                        <div class="dropdown-group">
+                            <label for="category${productCounter}"></label>
+                            <select id="category${productCounter}" onchange="handleCategoryChange(${productCounter})">
+                                <option value="">Selecciona una categoría</option>
+                                <option value="" disabled>------------------PERFILES------------------</option>
+                                <option value="1">Puertas  Ventanas  Duelas Rieles Etc</option>
+                                <option value="2">Cuadrados</option>
+                                <option value="3">Rectangulares</option>
+                                <option value="4">Tubos Redondos</option>
+                                <option value="5">Polines</option>
+                                <option value="" disabled>------------------SOLIDOS------------------</option>
+                                <option value="6">Soleras</option>
+                                <option value="7">Angulos</option>
+                                <option value="8">Varilla</option>
+                                <option value="" disabled>------------------LAMINAS------------------</option>
+                                <option value="9">Acanalada</option>
+                                <option value="10">Antiderrapante</option>
+                                <option value="11">Lamina Lisa</option>
+                                <option value="" disabled>------------------ESTRUCTURAL------------------</option>
+                                <option value="12">Placas</option>
+                                <option value="13">Canal</option>
+                                <option value="14">Hss</option>
+                                <option value="15">Viga</option>
+                                <option value="" disabled>------------------FERRETERIA------------------</option>
+                                <option value="16">Varios (SOLDADURA, Pijas, Seguetas etc)</option>
+                                <option value="17">Discos</option>
+                                <option value="18">Mallas</option>
+                                <option value="19">Pasadores</option>
+                                <option value="20">Pinturas</option>
+                                <option value="21">Taquetes</option>
+                                <option value="22">Bisagras</option>
+                                <option value="23">Corredores</option>
+                                <option value="24">Cerraduras</option>
+                                <option value="25">Figuras</option>
+                                <option value="26">Cuellos</option>
+                            </select>
 
-            <label for="subcategory${productCounter}"></label>   <!-- subcategoria -->
-            <select id="subcategory${productCounter}" disabled onchange="handleSubcategoryChange(${productCounter})">
-                <option value="">Selecciona una subcategoría</option>
-            </select>
-        </div>
+                            <label for="subcategory${productCounter}"></label>
+                            <select id="subcategory${productCounter}" disabled onchange="handleSubcategoryChange(${productCounter})">
+                                <option value="">Selecciona una subcategoría</option>
+                            </select>
+                        </div>
 
-        <label for="product${productCounter}"></label> <!-- producto -->
-        <select id="product${productCounter}" disabled onchange="handleProductChange(${productCounter})">
-            <option value="">Selecciona un producto</option>
-        </select>
-    </div>
-    <div class="search-container">
-        <label for="search${productCounter}">Buscar Producto o ID:</label>
-        <input type="text" id="search${productCounter}" placeholder="Escribe el nombre o ID" oninput="searchProduct(${productCounter})">
-        <div id="searchResults${productCounter}"></div>
-    </div>
-    <label for="quantity${productCounter}">Cantidad:</label>
-    <select id="quantity${productCounter}" class="product-quantity" disabled>
-        ${generateQuantityOptions(1, 100)}
-    </select>
-`;
+                        <label for="product${productCounter}">Producto</label>
+                        <select id="product${productCounter}" disabled onchange="handleProductChange(${productCounter})">
+                            <option value="">Selecciona un producto</option>
+                        </select>
+                    </div>
+                    <div class="search-container">
+                        <label for="search${productCounter}">Buscar Producto o ID:</label>
+                        <input type="text" id="search${productCounter}" placeholder="Escribe el nombre o ID" oninput="searchProduct(${productCounter})">
+                        <div id="searchResults${productCounter}"></div>
+                    </div>
+                    <label for="quantity${productCounter}">Piezas:</label>
+                    <select id="quantity${productCounter}" class="product-quantity" disabled onchange="calculateTotalForRow(${productCounter})">
+                        ${generateQuantityOptions(1, 100)}
+                    </select>
+                    <div id="totalPartida${productCounter}" class="total-partida">Total Partida: $0.00</div>
+                    <hr>
+                `;
+                productContainer.appendChild(productRow);
+                productCounter++;
+                updateProductCount();
+            } else {
+                alert('Has alcanzado el máximo de 30 productos.');
+            }
+        }
 
-          productContainer.appendChild(productRow);
-          productCounter++;
-          updateProductCount();
-      } else {
-          alert('Has alcanzado el máximo de 30 productos.');
-      }
-  }
-
-  // Función para generar las opciones de cantidad (números del 1 al 100)
-  function generateQuantityOptions(min, max) {
-      let options = `<option value="">Selecciona la cantidad</option>`;
-      for (let i = min; i <= max; i++) {
-          options += `<option value="${i}">${i}</option>`;
-      }
-      return options;
-  }
-
+        function generateQuantityOptions(min, max) {
+            let options = `<option value="">Selecciona la cantidad</option>`;
+            for (let i = min; i <= max; i++) {
+                options += `<option value="${i}">${i}</option>`;
+            }
+            return options;
+        }
 
         function toggleSearchMode(index) {
-    const toggleSwitch = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .toggle-switch`);
-    const dropdownContainer = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .dropdown-container`);
-    const searchContainer = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .search-container`);
-    const searchInput = document.getElementById(`search${index}`); // Input de búsqueda
-    const searchResults = document.getElementById(`searchResults${index}`); // Resultados de búsqueda
-    const quantityInput = document.getElementById(`quantity${index}`); // Input de cantidad
+            const toggleSwitch = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .toggle-switch`);
+            const dropdownContainer = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .dropdown-container`);
+            const searchContainer = document.querySelector(`#productContainer .product-row:nth-child(${index + 1}) .search-container`);
+            toggleSwitch.classList.toggle('active');
 
-    toggleSwitch.classList.toggle('active');
-    const isActive = toggleSwitch.classList.contains('active');
-
-    if (isActive) {
-        dropdownContainer.classList.remove('active');
-        searchContainer.classList.add('active');
-    } else {
-        dropdownContainer.classList.add('active');
-        searchContainer.classList.remove('active');
-
-        // Limpiar los campos al desactivar el toggle
-        if (searchInput) {
-            searchInput.value = ''; // Limpia el campo de búsqueda
+            if (toggleSwitch.classList.contains('active')) {
+                dropdownContainer.classList.remove('active');
+                searchContainer.classList.add('active');
+            } else {
+                dropdownContainer.classList.add('active');
+                searchContainer.classList.remove('active');
+            }
         }
-        if (searchResults) {
-            searchResults.innerHTML = ''; // Limpia los resultados de búsqueda
-        }
-        if (quantityInput) {
-            quantityInput.value = ''; // Limpia el campo de cantidad
-            quantityInput.disabled = true; // Desactiva el campo de cantidad
-        }
-
-        // Elimina el producto seleccionado del objeto de búsqueda
-        delete selectedSearchProducts[`product${index}`];
-    }
-}
-
-
-
 
         function searchProduct(index) {
             const query = document.getElementById(`search${index}`).value.toLowerCase();
@@ -342,10 +1106,11 @@
                                 resultItem.textContent = `${product.id} - ${product.name}`;
                                 resultItem.className = 'search-result-item';
                                 resultItem.onclick = () => {
-                                    document.getElementById(`quantity${index}`).disabled = false;
                                     document.getElementById(`search${index}`).value = `${product.id} - ${product.name}`;
+                                    document.getElementById(`quantity${index}`).disabled = false;
                                     selectedSearchProducts[`product${index}`] = { id: product.id, name: product.name };
                                     searchResults.innerHTML = "";
+                                    calculateTotalForRow(index);
                                 };
                                 searchResults.appendChild(resultItem);
                             }
@@ -356,17 +1121,13 @@
         }
 
         function handleCategoryChange(index) {
-            const categorySelect = document.getElementById(`category${index}`);
+            const category = document.getElementById(`category${index}`).value;
             const subcategorySelect = document.getElementById(`subcategory${index}`);
-            const productSelect = document.getElementById(`product${index}`);
             subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
-            productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
             subcategorySelect.disabled = true;
-            productSelect.disabled = true;
-            document.getElementById(`quantity${index}`).disabled = true;
 
-            if (categorySelect.value) {
-                Object.keys(data[categorySelect.value]).forEach(subcategory => {
+            if (category) {
+                Object.keys(data[category]).forEach(subcategory => {
                     const option = document.createElement('option');
                     option.value = subcategory;
                     option.textContent = subcategory.toUpperCase();
@@ -382,7 +1143,6 @@
             const productSelect = document.getElementById(`product${index}`);
             productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
             productSelect.disabled = true;
-            document.getElementById(`quantity${index}`).disabled = true;
 
             if (subcategory) {
                 data[category][subcategory].forEach(product => {
@@ -396,57 +1156,59 @@
         }
 
         function handleProductChange(index) {
-      const quantitySelect = document.getElementById(`quantity${index}`);
-      if (quantitySelect) {
-          quantitySelect.disabled = false; // Habilitar el select de cantidad al seleccionar un producto
-      }
-  }
-
-
-  function copyAllToClipboard() {
-let fullText = "";
-for (let i = 0; i < productCounter; i++) {
-  const productInput = document.getElementById(`search${i}`);
-  const quantitySelect = document.getElementById(`quantity${i}`);
-  const productSelect = document.getElementById(`product${i}`);
-  if (productInput && selectedSearchProducts[`product${i}`] && quantitySelect.value) {
-      fullText += `${selectedSearchProducts[`product${i}`].id} ${selectedSearchProducts[`product${i}`].name}: ${quantitySelect.value} piezas\n`;
-  } else if (productSelect && productSelect.value && quantitySelect.value) {
-      const selectedOption = productSelect.selectedOptions[0];
-      fullText += `${selectedOption.value} ${selectedOption.text}: ${quantitySelect.value} piezas\n`;
-  }
-}
-if (fullText) {
-  navigator.clipboard.writeText(fullText).then(() => alert('Productos copiados al portapapeles.'));
-} else {
-  alert('Selecciona al menos un producto y especifica la cantidad para copiar.');
-}
+    const quantitySelect = document.getElementById(`quantity${index}`);
+    if (quantitySelect) {
+        quantitySelect.disabled = false; // Habilitar el select de cantidad al seleccionar un producto
+    }
+    calculateTotalForRow(index); // Recalcular el total para la fila correspondiente
 }
 
 
-function sendToWhatsApp() {
-let message = "";
-for (let i = 0; i < productCounter; i++) {
-  const productInput = document.getElementById(`search${i}`);
-  const quantitySelect = document.getElementById(`quantity${i}`); // Cambiado de input a select
-  const productSelect = document.getElementById(`product${i}`);
 
-  if (productInput && selectedSearchProducts[`product${i}`] && quantitySelect.value) {
-      message += `${selectedSearchProducts[`product${i}`].id} ${selectedSearchProducts[`product${i}`].name}: ${quantitySelect.value} piezas\n`;
-  } else if (productSelect && productSelect.value && quantitySelect.value) {
-      const selectedOption = productSelect.selectedOptions[0];
-      message += `${selectedOption.value} ${selectedOption.text}: ${quantitySelect.value} piezas\n`;
-  }
-}
+        function copyAllToClipboard() {
+        let fullText = "";
+        for (let i = 0; i < productCounter; i++) {
+        const productInput = document.getElementById(`search${i}`);
+        const quantitySelect = document.getElementById(`quantity${i}`);
+        const productSelect = document.getElementById(`product${i}`);
+        if (productInput && selectedSearchProducts[`product${i}`] && quantitySelect.value) {
+        fullText += `IDNAME:${selectedSearchProducts[`product${i}`].id} Description:${selectedSearchProducts[`product${i}`].name}: ${quantitySelect.value} piezas\n`;
+        } else if (productSelect && productSelect.value && quantitySelect.value) {
+        const selectedOption = productSelect.selectedOptions[0];
+        fullText += `IDNAME:${selectedOption.value} Description:${selectedOption.text}: ${quantitySelect.value} piezas\n`;
+        }
+        }
+        if (fullText) {
+        navigator.clipboard.writeText(fullText).then(() => alert('Productos copiados al portapapeles.'));
+        } else {
+        alert('Selecciona al menos un producto y especifica la cantidad para copiar.');
+        }
+        }
 
-if (message) {
-  const encodedMessage = encodeURIComponent(message);
-  const phoneNumber = "528115001658"; // Reemplaza con el número al que deseas enviar
-  window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`, '_blank');
-} else {
-  alert('Debes seleccionar al menos un producto y especificar la cantidad para enviar.');
-}
-}
+
+        function sendToWhatsApp() {
+        let message = "";
+        for (let i = 0; i < productCounter; i++) {
+        const productInput = document.getElementById(`search${i}`);
+        const quantitySelect = document.getElementById(`quantity${i}`); // Cambiado de input a select
+        const productSelect = document.getElementById(`product${i}`);
+
+        if (productInput && selectedSearchProducts[`product${i}`] && quantitySelect.value) {
+        message += `IDNAME:${selectedSearchProducts[`product${i}`].id} Description:${selectedSearchProducts[`product${i}`].name}: ${quantitySelect.value} piezas\n`;
+        } else if (productSelect && productSelect.value && quantitySelect.value) {
+        const selectedOption = productSelect.selectedOptions[0];
+        message += `IDNAME:${selectedOption.value} Description:${selectedOption.text}: ${quantitySelect.value} piezas\n`;
+        }
+        }
+
+        if (message) {
+        const encodedMessage = encodeURIComponent(message);
+        const phoneNumber = "528115001658"; // Reemplaza con el número al que deseas enviar
+        window.open(`https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`, '_blank');
+        } else {
+        alert('Debes seleccionar al menos un producto y especificar la cantidad para enviar.');
+        }
+        }
 
         document.getElementById('addProduct').addEventListener('click', addProductRow);
         document.getElementById('resetButton').addEventListener('click', () => {
