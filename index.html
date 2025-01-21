@@ -8,16 +8,62 @@
     <title>Formulario de Pedidos</title>
     <style>
 
+    /* Clase para resaltar el select activo */
+.highlight {
+    border-color: #25CC64;
+    box-shadow: 0 0 10px #25CC64;
+    animation: pulse 1.5s infinite;
+}
+
+/* Efecto de pulso */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 10px #25CC64;
+    }
+    50% {
+        box-shadow: 0 0 20px #25CC64;
+    }
+    100% {
+        box-shadow: 0 0 10px #25CC64;
+    }
+}
+
 
         #orderSummary {
-        margin-top: 20px;
-        text-align: left;
-    }
+                   margin: 20px;
+                   padding: 20px;
+                   border: 2px solid #39383B;
+                   background-color: #f9f9f9;
+                   border-radius: 10px;
+               }
 
-    #summaryList {
-        list-style-type: none;
-        padding: 0;
-    }
+               #summaryList {
+                   list-style-type: disc;
+                   padding-left: 20px;
+               }
+
+               button {
+                   margin-top: 20px;
+                   padding: 10px 15px;
+                   background-color: #25CC64;
+                   color: white;
+                   border: none;
+                   border-radius: 5px;
+                   cursor: pointer;
+               }
+
+               button:hover {
+                   background-color: #1da653;
+               }
+
+               img {
+                   margin-top: 20px;
+                   max-width: 100%;
+                   border: 1px solid #ddd;
+                   border-radius: 10px;
+               }
+
+
 
     #summaryList li {
         margin: 5px 0;
@@ -1086,11 +1132,18 @@
                     <hr>
                 `;
                 productContainer.appendChild(productRow);
+                // Resalta automáticamente el primer paso (categoría) para guiar al usuario
+       const categorySelect = document.getElementById(`category${productCounter}`);
+       categorySelect.classList.add('highlight');
+       // Incrementa el contador y actualiza el conteo
+
                 productCounter++;
                 updateProductCount();
             } else {
                 alert('Has alcanzado el máximo de 30 productos.');
             }
+
+
         }
 
         function generateQuantityOptions(min, max) {
@@ -1144,49 +1197,104 @@
             }
         }
 
-        function handleCategoryChange(index) {
-            const category = document.getElementById(`category${index}`).value;
-            const subcategorySelect = document.getElementById(`subcategory${index}`);
-            subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
-            subcategorySelect.disabled = true;
+        // Función genérica para iluminar el siguiente paso
+    function highlightNext(currentElement, nextElementId) {
+        currentElement.classList.remove('highlight'); // Quitar la clase del actual
 
-            if (category) {
-                Object.keys(data[category]).forEach(subcategory => {
-                    const option = document.createElement('option');
-                    option.value = subcategory;
-                    option.textContent = subcategory.toUpperCase();
-                    subcategorySelect.appendChild(option);
-                });
-                subcategorySelect.disabled = false;
-            }
+        const nextElement = document.getElementById(nextElementId);
+        if (nextElement) {
+            nextElement.disabled = false; // Habilitar el siguiente
+            nextElement.classList.add('highlight'); // Resaltar el siguiente
         }
-
-        function handleSubcategoryChange(index) {
-            const category = document.getElementById(`category${index}`).value;
-            const subcategory = document.getElementById(`subcategory${index}`).value;
-            const productSelect = document.getElementById(`product${index}`);
-            productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
-            productSelect.disabled = true;
-
-            if (subcategory) {
-                data[category][subcategory].forEach(product => {
-                    const option = document.createElement('option');
-                    option.value = product.id;
-                    option.textContent = product.name;
-                    productSelect.appendChild(option);
-                });
-                productSelect.disabled = false;
-            }
-        }
-
-        function handleProductChange(index) {
-    const quantitySelect = document.getElementById(`quantity${index}`);
-    if (quantitySelect) {
-        quantitySelect.disabled = false; // Habilitar el select de cantidad al seleccionar un producto
     }
-    calculateTotalForRow(index); // Recalcular el total para la fila correspondiente
-}
 
+    // Maneja el cambio de categoría
+    function handleCategoryChange(index) {
+        const categorySelect = document.getElementById(`category${index}`);
+        const subcategorySelect = document.getElementById(`subcategory${index}`);
+
+        // Lógica de iluminación
+        highlightNext(categorySelect, `subcategory${index}`);
+
+        // Lógica de negocio
+        subcategorySelect.innerHTML = '<option value="">Selecciona una subcategoría</option>';
+        subcategorySelect.disabled = true;
+
+        const category = categorySelect.value;
+        if (category) {
+            Object.keys(data[category]).forEach(subcategory => {
+                const option = document.createElement('option');
+                option.value = subcategory;
+                option.textContent = subcategory.toUpperCase();
+                subcategorySelect.appendChild(option);
+            });
+            subcategorySelect.disabled = false;
+        }
+    }
+
+    // Maneja el cambio de subcategoría
+    function handleSubcategoryChange(index) {
+        const subcategorySelect = document.getElementById(`subcategory${index}`);
+        const productSelect = document.getElementById(`product${index}`);
+
+        // Lógica de iluminación
+        highlightNext(subcategorySelect, `product${index}`);
+
+        // Lógica de negocio
+        productSelect.innerHTML = '<option value="">Selecciona un producto</option>';
+        productSelect.disabled = true;
+
+        const category = document.getElementById(`category${index}`).value;
+        const subcategory = subcategorySelect.value;
+        if (subcategory) {
+            data[category][subcategory].forEach(product => {
+                const option = document.createElement('option');
+                option.value = product.id;
+                option.textContent = product.name;
+                productSelect.appendChild(option);
+            });
+            productSelect.disabled = false;
+        }
+    }
+
+    function handleProductChange(index) {
+      const productSelect = document.getElementById(`product${index}`);
+      const quantitySelect = document.getElementById(`quantity${index}`);
+
+      // Lógica de iluminación
+      highlightNext(productSelect, `quantity${index}`);
+
+      // Lógica de negocio
+      if (quantitySelect) {
+          quantitySelect.disabled = false;
+      }
+      calculateTotalForRow(index); // Recalcular el total para la fila correspondiente
+  }
+
+  // Modificar esta función para quitar la iluminación al seleccionar la cantidad
+  function calculateTotalForRow(index) {
+      const selectedProduct = selectedSearchProducts[`product${index}`] || {};
+      const productId = selectedProduct.id || document.getElementById(`product${index}`).value;
+      const quantity = parseInt(document.getElementById(`quantity${index}`).value) || 0;
+
+      let totalPorPartida = 0;
+
+      if (productId && prices[productId]) {
+          totalPorPartida = prices[productId] * quantity;
+      }
+
+      // Actualizar el total de la partida en el DOM
+      document.getElementById(`totalPartida${index}`).textContent = `Total Partida: $${totalPorPartida.toFixed(2)}`;
+
+      // Eliminar la iluminación de la casilla de cantidad
+      const quantitySelect = document.getElementById(`quantity${index}`);
+      if (quantity > 0) {
+          quantitySelect.classList.remove('highlight');
+      }
+
+      // Recalcular el total general
+      calculateTotalGeneral();
+  }
 
 
         function copyAllToClipboard() {
@@ -1254,23 +1362,7 @@
             }
         }
 
-        // Llama a la función de resumen cada vez que cambie algo relevante
-        function calculateTotalForRow(index) {
-            const selectedProduct = selectedSearchProducts[`product${index}`] || {};
-            const productId = selectedProduct.id || document.getElementById(`product${index}`).value;
-            const quantity = parseInt(document.getElementById(`quantity${index}`).value) || 0;
-
-            let totalPorPartida = 0;
-
-            if (productId && prices[productId]) {
-                totalPorPartida = prices[productId] * quantity;
-            }
-
-            document.getElementById(`totalPartida${index}`).textContent = `Total Partida: $${totalPorPartida.toFixed(2)}`;
-            calculateTotalGeneral();
-            updateOrderSummary(); // Actualiza el resumen
-        }
-
+      
         function calculateTotalGeneral() {
             totalGeneral = 0;
             for (let i = 0; i < productCounter; i++) {
